@@ -1,0 +1,17 @@
+{% extends 'core/page_layout.html' %}
+{% load i18n %}
+{% load content %}
+
+{% block page_content %}
+<div class="row">
+    <div class="col-lg-10 page-prose">
+        {% if page.image %}<img class="img-fluid article-cover mb-4" src="{{ page.image.url }}" alt="{{ page.i18n.image_alt|default:page.i18n.title }}">{% endif %}
+        {% if page.i18n.body %}
+            {{ page.i18n.body|richtext }}
+        {% elif not board_members %}
+            <p class="mb-0">{% translate "Информация будет опубликована позже." %}</p>
+        {% endif %}
+    </div>
+</div>
+{% block extra_information %}{% endblock %}
+{% endblock %}

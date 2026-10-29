@@ -1,0 +1,63 @@
+{% extends 'admin/base.html' %}
+{% load i18n %}
+
+{% block branding %}{% include 'unfold/helpers/site_branding.html' %}{% endblock %}
+
+{% block content %}
+<div class="tukid-dashboard">
+    <section class="tukid-welcome">
+        <div>
+            <p class="tukid-eyebrow">TUKID · ПАНЕЛЬ УПРАВЛЕНИЯ</p>
+            <h1>Ваш сайт под контролем</h1>
+            <p>Публикации, участники и события объединения — в одном месте.</p>
+        </div>
+        <a class="tukid-button" href="/" target="_blank" rel="noopener">Открыть сайт <span class="material-symbols-outlined" aria-hidden="true">arrow_outward</span></a>
+    </section>
+
+    <div class="tukid-stats">
+        {% for card in overview_cards %}
+        <a class="tukid-panel tukid-stat" href="{{ card.url }}">
+            <span class="tukid-stat-icon material-symbols-outlined" aria-hidden="true">{{ card.icon }}</span>
+            <span class="tukid-muted">{{ card.title }}</span>
+            <strong>{{ card.total }}</strong>
+            <span class="tukid-muted">На сайте: {{ card.live }}</span>
+        </a>
+        {% endfor %}
+    </div>
+
+    {% if quick_links %}
+    <section class="tukid-panel">
+        <h2>Быстрые действия</h2>
+        <div class="tukid-quick">
+            {% for link in quick_links %}
+            <a href="{{ link.url }}"><span class="material-symbols-outlined" aria-hidden="true">{{ link.icon }}</span>{{ link.title }}<span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span></a>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+
+    <div class="tukid-columns">
+        <section class="tukid-panel">
+            <h2>Внимание к содержимому</h2>
+            {% if scheduled_news %}<p class="tukid-note">Запланировано новостей: {{ scheduled_news }}. Они появятся на сайте в указанное время.</p>{% endif %}
+            {% for task in editorial_tasks %}
+            <a class="tukid-row" href="{{ task.url }}"><span>{{ task.title }}</span><span class="tukid-badge">{{ task.count }}</span></a>
+            {% empty %}
+            <p class="tukid-muted">Нет незавершённых публикаций в доступных вам разделах.</p>
+            {% endfor %}
+        </section>
+        <section class="tukid-panel">
+            <h2>Ваши последние изменения</h2>
+            {% for action in recent_actions %}
+            <div class="tukid-row"><div>
+                {% if action.is_deletion %}<span>{{ action.object_repr }}</span>{% else %}<a href="{{ action.get_admin_url }}">{{ action.object_repr }}</a>{% endif %}
+                <small class="tukid-muted">{{ action.get_change_message|default:'Изменение записи' }}</small>
+            </div><time class="tukid-muted">{{ action.action_time|date:'d.m H:i' }}</time></div>
+            {% empty %}
+            <p class="tukid-muted">Здесь появится история ваших действий.</p>
+            {% endfor %}
+        </section>
+    </div>
+    <p class="tukid-muted tukid-help">Разделы главной можно скрывать и менять местами. Тексты, фотографии, контакты и меню редактируются через боковую панель.</p>
+</div>
+{% endblock %}

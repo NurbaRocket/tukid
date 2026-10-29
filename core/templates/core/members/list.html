@@ -1,0 +1,57 @@
+{% extends 'core/page_layout.html' %}
+{% load i18n %}
+{% load content %}
+
+{% block page_content %}
+<form class="row g-3 mb-5 filter-panel mx-0" method="get" action="{% url 'core:members' %}" role="search">
+    <div class="col-md-5">
+        <label class="form-label" for="member-query">{% translate "Поиск по компаниям" %}</label>
+        <input class="form-control" type="search" id="member-query" name="q" value="{{ query }}" maxlength="200" placeholder="{% translate "Название, город или сфера деятельности" %}">
+    </div>
+    <div class="col-md-4">
+        <label class="form-label" for="member-sector">{% translate "Сфера деятельности" %}</label>
+        <select class="form-select" id="member-sector" name="sector">
+            <option value="">{% translate "Все сферы" %}</option>
+            {% for sector in sectors %}
+                <option value="{{ sector.slug }}"{% if selected_sector == sector.slug %} selected{% endif %}>{{ sector.i18n.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="col-md-3 d-flex align-items-end gap-2">
+        <button class="btn btn-primary" type="submit">{% translate "Найти" %}</button>
+        {% if query or selected_sector %}<a class="btn btn-outline-secondary" href="{% url 'core:members' %}">{% translate "Сбросить" %}</a>{% endif %}
+    </div>
+</form>
+
+<div class="row g-4">
+    {% for member in page_obj %}
+    <div class="col-md-6 col-lg-4">
+        <article class="card content-card h-100 member-card">
+            <a class="member-logo-box" href="{{ member.get_absolute_url }}" aria-label="{% blocktranslate with v0=member.i18n.name %}О компании {{ v0 }}{% endblocktranslate %}">
+                {% if member.logo %}
+                    <img class="member-logo" src="{{ member.logo.url }}" alt="{% blocktranslate with v0=member.i18n.name %}Логотип {{ v0 }}{% endblocktranslate %}" width="240" height="120" loading="lazy">
+                {% else %}
+                    <i class="fas fa-building text-color-primary text-10" aria-hidden="true"></i>
+                {% endif %}
+            </a>
+            <div class="card-body d-flex flex-column">
+                {% if member.is_demo %}<div class="mb-2">{% include 'core/includes/demo_badge.html' with object=member %}</div>{% endif %}
+                <h2 class="text-5 font-weight-bold text-transform-none mb-2"><a class="text-color-dark" href="{{ member.get_absolute_url }}">{{ member.i18n.name }}</a></h2>
+                {% if member.i18n.city %}<p class="text-2 mb-2">{{ member.i18n.city }}</p>{% endif %}
+                <div class="d-flex flex-wrap gap-1 mb-3">
+                    {% for sector in member.sectors.all %}<span class="badge bg-light text-dark border">{{ sector.i18n.name }}</span>{% endfor %}
+                </div>
+                {% if member.i18n.description %}<p>{{ member.i18n.description|plain_text|truncatewords:30 }}</p>{% endif %}
+                {% if member.open_vacancies and 'career' in published_pages %}<p class="mb-3"><a class="career-hiring" href="{% url 'core:career' %}?company={{ member.slug|urlencode }}#vacancies"><i class="fas fa-briefcase me-2" aria-hidden="true"></i>{% translate "Открытых вакансий:" %} {{ member.open_vacancies|length }}</a></p>{% endif %}
+                <a class="card-link mt-auto" href="{{ member.get_absolute_url }}">{% translate "О компании" %} <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+        </article>
+    </div>
+    {% empty %}
+    <div class="col-12">
+        <p class="mb-0">{% if query or selected_sector %}{% translate "Компании по выбранным условиям не найдены." %}{% else %}{% translate "Информация о членах объединения скоро появится." %}{% endif %}</p>
+    </div>
+    {% endfor %}
+</div>
+{% include 'core/includes/pagination.html' %}
+{% endblock %}

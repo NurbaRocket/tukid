@@ -1,0 +1,26 @@
+{% load i18n %}
+<section id="home" class="section hero-section border-0 m-0 py-5">
+    <div class="container py-lg-4">
+        <div class="row align-items-center gy-5">
+            <div class="col-lg-6">
+                <p class="section-eyebrow">{{ section.i18n.eyebrow }}</p>
+                <h1 class="hero-title">{{ section.i18n.title|linebreaksbr }}</h1>
+                <p class="hero-description">{{ section.i18n.description|linebreaksbr }}</p>
+                <div class="d-flex flex-wrap gap-3">
+                    {% if section.i18n.link_label and section.link_url and section.link_visible %}<a class="btn btn-outline btn-primary font-weight-semibold text-3 px-4 py-3" href="{{ section.link_url }}">{{ section.i18n.link_label }} <i class="fas fa-arrow-right ms-2" aria-hidden="true"></i></a>{% endif %}
+                    {% if section.i18n.secondary_label and section.secondary_url and section.secondary_visible %}<a class="btn btn-primary font-weight-semibold text-3 px-4 py-3" href="{{ section.secondary_url }}">{{ section.i18n.secondary_label }}</a>{% endif %}
+                </div>
+                {% if home_focus %}<div class="hero-focus" aria-label="{% translate "Направления деятельности" %}">
+                    {% for direction in home_focus %}<span class="hero-focus-item"><i class="fas fa-{{ direction.icon }}" aria-hidden="true"></i>{{ direction.i18n.title }}</span>{% endfor %}
+                </div>{% endif %}
+            </div>
+            <div class="col-lg-6">
+                <figure class="hero-visual">
+                    {% if section.image %}{% include 'core/includes/home_photo.html' with src=section.image_url alt=section.i18n.image_alt eager=True %}
+                    {% else %}{% include 'core/includes/home_photo.html' with image='core/images/placeholders/home-bridge.svg' alt=_('Место для фотографии объединения TÜKİD') eager=True %}{% endif %}
+                    <figcaption class="hero-caption"><span>{% translate "КЫРГЫЗСТАН" %} <i class="fas fa-arrows-left-right mx-2" aria-hidden="true"></i> {% translate "ТУРЦИЯ" %}</span><span>{{ site_settings.i18n.name }}</span></figcaption>
+                </figure>
+            </div>
+        </div>
+    </div>
+</section>

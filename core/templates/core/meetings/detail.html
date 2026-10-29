@@ -1,0 +1,35 @@
+{% extends 'core/page_layout.html' %}
+{% load i18n %}
+{% load content %}
+
+{% block page_content %}
+<article class="row article-layout">
+    <div class="col-12">
+        {% include 'core/includes/demo_notice.html' with object=meeting %}
+        <a class="d-inline-block font-weight-semibold mb-4" href="{% url 'core:meetings' %}"><i class="fas fa-arrow-left me-2" aria-hidden="true"></i>{% translate "Все официальные встречи" %}</a>
+        <p class="text-4 text-color-primary font-weight-semibold"><time datetime="{{ meeting.date|date:'Y-m-d' }}">{{ meeting.date|date:'d E Y' }}</time></p>
+        {% if meeting.image %}<img class="img-fluid article-cover mb-4" src="{{ meeting.image.url }}" alt="{{ meeting.i18n.image_alt|default:meeting.i18n.title }}">{% endif %}
+        <div class="article-panel mb-4">
+            <h2 class="text-5 font-weight-bold text-transform-none mb-3">{% translate "Участники встречи" %}</h2>
+            <div class="text-4 line-height-7">{{ meeting.i18n.participants|linebreaks }}</div>
+        </div>
+        <h2 class="text-6 font-weight-bold text-transform-none">{% translate "Цель встречи" %}</h2>
+        <div class="page-prose text-4 line-height-7 mb-4">{{ meeting.i18n.purpose|linebreaks }}</div>
+        <h2 class="text-6 font-weight-bold text-transform-none">{% translate "Краткие итоги" %}</h2>
+        <div class="page-prose text-4 line-height-7 mb-5">{{ meeting.i18n.outcomes|linebreaks }}</div>
+        {% if meeting.photos.all %}
+        <section aria-labelledby="meeting-gallery-title">
+            <h2 id="meeting-gallery-title" class="text-6 font-weight-bold text-transform-none mb-4">{% translate "Фотографии встречи" %}</h2>
+            <div class="row g-4" data-plugin-lightbox data-plugin-options="{'delegate': 'a', 'type': 'image', 'gallery': {'enabled': true}}">
+                {% for photo in meeting.photos.all %}
+                <figure class="col-md-6 col-lg-4 mb-0">
+                    <a class="d-block" href="{{ photo.image.url }}">{% include 'core/includes/home_photo.html' with src=photo.image.url alt=photo.i18n.image_alt|default:meeting.i18n.title %}</a>
+                    {% if photo.i18n.caption %}<figcaption class="text-3 line-height-6 mt-2">{{ photo.i18n.caption }}</figcaption>{% endif %}
+                </figure>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
+    </div>
+</article>
+{% endblock %}

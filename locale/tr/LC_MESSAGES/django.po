@@ -1,0 +1,885 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: TUKID\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "%(v0)s в Facebook"
+msgstr "Facebook'ta %(v0)s"
+
+msgid "%(v0)s в Instagram"
+msgstr "Instagram'da %(v0)s"
+
+msgid "%(v0)s — главная"
+msgstr "%(v0)s — ana sayfa"
+
+msgid "(откроется в новой вкладке)"
+msgstr "(yeni sekmede açılır)"
+
+msgid ""
+". Решение о приёме принимает Совет Правления. Поля со звёздочкой "
+"обязательны."
+msgstr ""
+". Kabul kararını Yönetim Kurulu verir. Yıldız işaretli alanlar zorunludur."
+
+msgid "PDF или DOCX, не больше 5 МБ."
+msgstr "PDF veya DOCX, en fazla 5 MB."
+
+msgid "TUKID, Турция, Кыргызстан, предприниматели, культура, дружба"
+msgstr "TUKID, Türkiye, Kırgızistan, iş insanları, kültür, dostluk"
+
+msgid "Адрес"
+msgstr "Adres"
+
+msgid "Адрес организации"
+msgstr "Kuruluşun adresi"
+
+msgid "Анонсы"
+msgstr "Yaklaşan etkinlikler"
+
+msgid "Анонсы скоро появятся"
+msgstr "Etkinlik duyuruları yakında yayınlanacak"
+
+msgid "Больше событий и фотографий — в наших социальных сетях:"
+msgstr "Daha fazla etkinlik ve fotoğraf için sosyal medya hesaplarımız:"
+
+msgid "В объединении с"
+msgstr "Üyelik başlangıcı:"
+
+msgid "В офисе"
+msgstr "Ofiste"
+
+msgid "Вакансии компании"
+msgstr "Şirketin iş ilanları"
+
+msgid "Вакансии по выбранным условиям не найдены"
+msgstr "Seçilen ölçütlere uygun iş ilanı bulunamadı"
+
+msgid "Вакансия"
+msgstr "İş ilanı"
+
+msgid "Вакансия на момент отправки"
+msgstr "Başvuru anındaki pozisyon"
+
+msgid "Вакансия уже закрыта. Выберите другую или отправьте общую заявку."
+msgstr "Bu ilan kapanmıştır. Başka bir ilan seçin veya genel başvuru yapın."
+
+msgid "Введите корректный номер телефона с кодом страны."
+msgstr "Ülke koduyla birlikte geçerli bir telefon numarası girin."
+
+msgid "Вернуться к вакансиям"
+msgstr "İş ilanlarına dön"
+
+msgid "Внутренние заметки"
+msgstr "Dahili notlar"
+
+msgid ""
+"Время заполнения истекло. Обновите страницу и отправьте заявку ещё раз."
+msgstr "Formun süresi doldu. Sayfayı yenileyip başvuruyu tekrar gönderin."
+
+msgid "Все вакансии"
+msgstr "Tüm iş ilanları"
+
+msgid "Все вакансии компании"
+msgstr "Şirketin tüm iş ilanları"
+
+msgid "Все компании"
+msgstr "Tüm şirketler"
+
+msgid "Все мероприятия"
+msgstr "Tüm etkinlikler"
+
+msgid "Все новости"
+msgstr "Tüm haberler"
+
+msgid "Все новости по тегу «"
+msgstr "Şu etikete ait tüm haberler: «"
+
+msgid "Все официальные встречи"
+msgstr "Tüm resmî görüşmeler"
+
+msgid "Все сферы"
+msgstr "Tüm sektörler"
+
+msgid "Все члены объединения"
+msgstr "Tüm üyeler"
+
+msgid ""
+"Вы можете оставить общую заявку: укажите желаемую должность и прикрепите "
+"резюме."
+msgstr ""
+"Genel başvuru yapabilirsiniz: istediğiniz pozisyonu belirtin ve "
+"özgeçmişinizi ekleyin."
+
+msgid "Вымышленный материал для проверки оформления"
+msgstr "Tasarımı denemek için oluşturulmuş örnek içerik"
+
+msgid "Генеральный директор"
+msgstr "Genel müdür"
+
+msgid "Генеральный секретарь"
+msgstr "Genel sekreter"
+
+msgid "Гибридный формат"
+msgstr "Hibrit çalışma"
+
+msgid "Главная"
+msgstr "Ana sayfa"
+
+msgid "Главное меню"
+msgstr "Ana menü"
+
+msgid "Город"
+msgstr "Şehir"
+
+msgid "Город проживания"
+msgstr "Yaşadığınız şehir"
+
+msgid "Далее"
+msgstr "Sonraki"
+
+msgid "Данные заявителя"
+msgstr "Başvuru sahibinin bilgileri"
+
+msgid ""
+"Данные и резюме сохранены для рассмотрения. Для обратной связи используются "
+"указанные вами контакты."
+msgstr ""
+"Bilgileriniz ve özgeçmişiniz değerlendirilmek üzere kaydedildi. İletişim "
+"için belirttiğiniz bilgiler kullanılacaktır."
+
+msgid "Данные организации"
+msgstr "Kuruluş bilgileri"
+
+msgid "Дата заявления: %(date)s    ФИО: %(name)s"
+msgstr "Başvuru tarihi: %(date)s    Adı soyadı: %(name)s"
+
+msgid "Дата подачи"
+msgstr "Başvuru tarihi"
+
+msgid "Дата предложения кандидатуры"
+msgstr "Adayın önerildiği tarih"
+
+msgid "Дата решения"
+msgstr "Karar tarihi"
+
+msgid "Демо"
+msgstr "Örnek"
+
+msgid ""
+"Демонстрационный материал. Имена, компании и события вымышлены и "
+"используются для проверки оформления сайта."
+msgstr ""
+"Örnek içeriktir. İsimler, şirketler ve etkinlikler kurgusaldır; sitenin "
+"tasarımını denemek amacıyla kullanılmıştır."
+
+msgid "Для обратной связи используются указанные вами телефон и почта."
+msgstr ""
+"İletişim için belirttiğiniz telefon ve e-posta adresi kullanılacaktır."
+
+msgid "Должность"
+msgstr "Görev"
+
+msgid "Должность, компания или город"
+msgstr "Pozisyon, şirket veya şehir"
+
+msgid "Дополнительная информация"
+msgstr "Ek bilgiler"
+
+msgid "Другие вакансии компании"
+msgstr "Şirketin diğer iş ilanları"
+
+msgid "Желаемая должность"
+msgstr "İstediğiniz pozisyon"
+
+msgid "ЗАЯВКА НА ЧЛЕНСТВО"
+msgstr "ÜYELİK BAŞVURUSU"
+
+msgid "Закрыть меню"
+msgstr "Menüyü kapat"
+
+msgid "Заполните заявку на вступление в"
+msgstr "Üyelik başvurusu yapın:"
+
+msgid "Заполнить заявку"
+msgstr "Başvuru yap"
+
+msgid "Заполняется Советом Правления"
+msgstr "Yönetim Kurulu tarafından doldurulur"
+
+msgid ""
+"Заявитель не принят в членство в ОО на основании решения Совета Правления № "
+"%(number)s от %(date)s."
+msgstr ""
+"Başvuru sahibi, Yönetim Kurulunun %(date)s tarihli ve %(number)s sayılı "
+"kararı uyarınca üyeliğe kabul edilmemiştir."
+
+msgid ""
+"Заявитель принят в членство в ОО на основании решения Совета Правления № "
+"%(number)s от %(date)s."
+msgstr ""
+"Başvuru sahibi, Yönetim Kurulunun %(date)s tarihli ve %(number)s sayılı "
+"kararı uyarınca üyeliğe kabul edilmiştir."
+
+msgid ""
+"Заявка %(reference)s · %(date)s\n"
+"Статус: %(status)s"
+msgstr ""
+"Başvuru %(reference)s · %(date)s\n"
+"Durum: %(status)s"
+
+msgid "Заявка на членство"
+msgstr "Üyelik başvurusu"
+
+msgid "Заявка на членство TUKID"
+msgstr "TUKID üyelik başvurusu"
+
+msgid "Заявка сохранена и ожидает рассмотрения Советом Правления."
+msgstr ""
+"Başvurunuz kaydedildi ve Yönetim Kurulu tarafından değerlendirilmeyi "
+"bekliyor."
+
+msgid "Заявка успешно отправлена."
+msgstr "Başvurunuz başarıyla gönderildi."
+
+msgid "Заявление о вступлении"
+msgstr "Üyelik beyanı"
+
+msgid "Заявление о вступлении подтверждено"
+msgstr "Üyelik beyanı onaylandı"
+
+msgid "Здесь появятся логотипы компаний — членов TÜKİD."
+msgstr "TÜKİD üyesi şirketlerin logoları burada yer alacaktır."
+
+msgid ""
+"Знакомьтесь с вакансиями компаний — членов TÜKİD. Выберите подходящую "
+"позицию или оставьте общую заявку, указав свой опыт и профессиональные "
+"интересы."
+msgstr ""
+"TÜKİD üyesi şirketlerin iş ilanlarını inceleyin. Uygun bir pozisyon seçin "
+"veya deneyiminizi ve mesleki ilgi alanlarınızı belirterek genel başvuru "
+"yapın."
+
+msgid "ИНН организации"
+msgstr "Kuruluşun vergi kimlik numarası"
+
+msgid "Имя и фамилия"
+msgstr "Adınız ve soyadınız"
+
+msgid "Имя файла резюме"
+msgstr "Özgeçmiş dosyasının adı"
+
+msgid "Информация будет опубликована позже."
+msgstr "Bilgiler daha sonra yayınlanacaktır."
+
+msgid "Информация о сотрудничестве появится позже."
+msgstr "İş birliğine ilişkin bilgiler daha sonra yayınlanacaktır."
+
+msgid "Информация о членах объединения скоро появится."
+msgstr "Üyelerimizle ilgili bilgiler yakında yayınlanacaktır."
+
+msgid "Источник информации об ОО"
+msgstr "Dernek hakkındaki bilgi kaynağı"
+
+msgid "Источник информации об объединении"
+msgstr "Dernek hakkındaki bilgi kaynağı"
+
+msgid "Итоги:"
+msgstr "Sonuçlar:"
+
+msgid "КЫРГЫЗСТАН"
+msgstr "KIRGIZİSTAN"
+
+msgid ""
+"Кандидатура предложена: %(date)s\n"
+"Генеральный секретарь: %(name)s"
+msgstr ""
+"Adayın önerildiği tarih: %(date)s\n"
+"Genel sekreter: %(name)s"
+
+msgid "Категории мероприятий"
+msgstr "Etkinlik kategorileri"
+
+msgid "Компании по выбранным условиям не найдены."
+msgstr "Seçilen ölçütlere uygun şirket bulunamadı."
+
+msgid "Компания"
+msgstr "Şirket"
+
+msgid "Компания на момент отправки"
+msgstr "Başvuru anındaki şirket"
+
+msgid "Контактные данные"
+msgstr "İletişim bilgileri"
+
+msgid "Контакты"
+msgstr "İletişim"
+
+msgid "Контакты компании"
+msgstr "Şirketin iletişim bilgileri"
+
+msgid "Краткие итоги"
+msgstr "Kısa sonuçlar"
+
+msgid "Логотип %(v0)s"
+msgstr "%(v0)s logosu"
+
+msgid "Логотипы членов TÜKİD"
+msgstr "TÜKİD üyelerinin logoları"
+
+msgid "Мероприятие завершено."
+msgstr "Etkinlik sona erdi."
+
+msgid "Мероприятия в этом разделе пока не опубликованы."
+msgstr "Bu bölümde henüz etkinlik yayınlanmadı."
+
+msgid "Место для фотографии объединения TÜKİD"
+msgstr "TÜKİD fotoğrafı için ayrılmış alan"
+
+msgid "Место проведения"
+msgstr "Etkinlik yeri"
+
+msgid "Мобильный телефон"
+msgstr "Cep telefonu"
+
+msgid "Мы на связи"
+msgstr "Bizimle iletişimde kalın"
+
+msgid "На главную"
+msgstr "Ana sayfaya dön"
+
+msgid "На карте"
+msgstr "Haritada göster"
+
+msgid "На рассмотрении"
+msgstr "Değerlendiriliyor"
+
+msgid "Навигация"
+msgstr "Gezinme"
+
+msgid "Навигация в подвале"
+msgstr "Alt menü"
+
+msgid "Назад"
+msgstr "Önceki"
+
+msgid "Название фирмы"
+msgstr "Şirketin adı"
+
+msgid "Название, город или сфера деятельности"
+msgstr "Ad, şehir veya faaliyet alanı"
+
+msgid "Найдено вакансий:"
+msgstr "Bulunan iş ilanı:"
+
+msgid "Найти"
+msgstr "Ara"
+
+msgid "Написать %(v0)s в WhatsApp"
+msgstr "WhatsApp üzerinden %(v0)s ile iletişime geç"
+
+msgid "Направления деятельности"
+msgstr "Faaliyet alanları"
+
+msgid "Начало"
+msgstr "Başlangıç"
+
+msgid "Наши члены"
+msgstr "Üyelerimiz"
+
+msgid "Не нашли подходящую вакансию?"
+msgstr "Uygun bir iş ilanı bulamadınız mı?"
+
+msgid "Не удалось отправить форму."
+msgstr "Form gönderilemedi."
+
+msgid ""
+"Не удалось прочитать DOCX. Используйте обычный документ Word без макросов и "
+"вложений."
+msgstr ""
+"DOCX dosyası okunamadı. Makro ve gömülü nesne içermeyen standart bir Word "
+"belgesi kullanın."
+
+msgid "Не удалось прочитать PDF. Сохраните резюме в PDF ещё раз."
+msgstr "PDF dosyası okunamadı. Özgeçmişinizi yeniden PDF olarak kaydedin."
+
+msgid "Не удалось прочитать файл резюме."
+msgstr "Özgeçmiş dosyası okunamadı."
+
+msgid ""
+"Не удалось сформировать заявку. Попробуйте отправить её ещё раз позднее."
+msgstr "Başvuru oluşturulamadı. Lütfen daha sonra tekrar göndermeyi deneyin."
+
+msgid "Не указано"
+msgstr "Belirtilmemiş"
+
+msgid "Новая"
+msgstr "Yeni"
+
+msgid "Новости TÜKİD"
+msgstr "TÜKİD haberleri"
+
+msgid "Новости компании"
+msgstr "Şirket haberleri"
+
+msgid "Новости пока не опубликованы."
+msgstr "Henüz haber yayınlanmadı."
+
+msgid "Новости сообщества — здесь"
+msgstr "Topluluğumuzdan haberler"
+
+msgid "Номер заявки:"
+msgstr "Başvuru numarası:"
+
+msgid "Номер решения совета правления"
+msgstr "Yönetim Kurulu karar numarası"
+
+msgid "О встрече"
+msgstr "Görüşme hakkında"
+
+msgid "О компании"
+msgstr "Şirket hakkında"
+
+msgid "О компании %(v0)s"
+msgstr "%(v0)s hakkında"
+
+msgid "О себе и своём опыте"
+msgstr "Kendiniz ve deneyiminiz hakkında"
+
+msgid "Об объединении"
+msgstr "Dernek hakkında"
+
+msgid "Обновлена"
+msgstr "Güncellendi"
+
+msgid "Обновлено"
+msgstr "Güncellendi"
+
+msgid "Общая заявка — без выбранной вакансии"
+msgstr "Genel başvuru — ilan seçilmedi"
+
+msgid ""
+"Обязательно для общей заявки. При отклике на вакансию можно оставить пустым."
+msgstr ""
+"Genel başvuru için zorunludur. Bir ilana başvuruyorsanız boş "
+"bırakabilirsiniz."
+
+msgid "Окончание"
+msgstr "Bitiş"
+
+msgid "Описание и задачи"
+msgstr "İş tanımı ve görevler"
+
+msgid "Описание компании скоро появится."
+msgstr "Şirket tanıtımı yakında yayınlanacaktır."
+
+msgid "Опубликовано:"
+msgstr "Yayın tarihi:"
+
+msgid "Оставайтесь на связи"
+msgstr "İletişimde kalın"
+
+msgid "Оставить резюме"
+msgstr "Özgeçmiş gönder"
+
+msgid ""
+"Откликнитесь на вакансию или отправьте общую заявку для рассмотрения вашей "
+"кандидатуры."
+msgstr ""
+"Bir iş ilanına başvurun veya değerlendirilmek üzere genel başvuru gönderin."
+
+msgid "Откликнуться на вакансию"
+msgstr "İlana başvur"
+
+msgid "Отклонена"
+msgstr "Reddedildi"
+
+msgid "Открытые вакансии"
+msgstr "Açık iş ilanları"
+
+msgid "Открытых вакансий пока нет"
+msgstr "Şu anda açık iş ilanı yok"
+
+msgid "Открытых вакансий:"
+msgstr "Açık iş ilanı:"
+
+msgid "Открыть меню"
+msgstr "Menüyü aç"
+
+msgid "Отправить заявку"
+msgstr "Başvuruyu gönder"
+
+msgid "Отправить резюме"
+msgstr "Özgeçmişi gönder"
+
+msgid "Отправлена"
+msgstr "Gönderildi"
+
+msgid "Официальные встречи"
+msgstr "Resmî görüşmeler"
+
+msgid "Официальные встречи и визиты"
+msgstr "Resmî görüşmeler ve ziyaretler"
+
+msgid "ПРОФЕССИОНАЛЬНЫЕ ВОЗМОЖНОСТИ"
+msgstr "KARİYER FIRSATLARI"
+
+msgid "ПРОЦЕДУРА ПРИНЯТИЯ В ЧЛЕНСТВО"
+msgstr "ÜYELİĞE KABUL İŞLEMLERİ"
+
+msgid "Перейти к содержимому"
+msgstr "İçeriğe geç"
+
+msgid "Перейти к форме"
+msgstr "Forma git"
+
+msgid "Подать заявку на членство можно через форму вступления в объединение."
+msgstr "Üyelik formunu doldurarak başvuru yapabilirsiniz."
+
+msgid "Подойдёт PDF или DOCX размером до 5 МБ."
+msgstr "5 MB'a kadar PDF veya DOCX dosyası yükleyebilirsiniz."
+
+msgid ""
+"Подписи: генеральный секретарь ______________    председатель ______________"
+msgstr "İmzalar: genel sekreter ______________    başkan ______________"
+
+msgid "Подпись заявителя: ______________________________"
+msgstr "Başvuru sahibinin imzası: ______________________________"
+
+msgid "Подробнее"
+msgstr "Devamı"
+
+msgid "Подробнее и откликнуться"
+msgstr "İncele ve başvur"
+
+msgid "Подтвердите заявление о вступлении."
+msgstr "Üyelik beyanını onaylayın."
+
+msgid "Подтвердите согласие на обработку данных."
+msgstr "Verilerinizin işlenmesine onay verin."
+
+msgid ""
+"Подтверждаю указанные сведения и заявление о вступлении, приведённое выше."
+msgstr "Belirtilen bilgileri ve yukarıdaki üyelik beyanını onaylıyorum."
+
+msgid "Поиск вакансии"
+msgstr "İş ilanı ara"
+
+msgid "Поиск по компаниям"
+msgstr "Şirket ara"
+
+msgid "Поиск по компаниям..."
+msgstr "Şirket ara..."
+
+msgid "Полная занятость"
+msgstr "Tam zamanlı"
+
+msgid "Поля со звёздочкой обязательны."
+msgstr "Yıldız işaretli alanlar zorunludur."
+
+msgid ""
+"После отправки заявка сохраняется для рассмотрения Советом Правления. "
+"Подпись в печатном экземпляре ставится от руки."
+msgstr ""
+"Gönderilen başvuru, Yönetim Kurulunun değerlendirmesi için kaydedilir. "
+"Basılı nüsha elle imzalanır."
+
+msgid "Последнее рассмотрение"
+msgstr "Son değerlendirme"
+
+msgid "Почта"
+msgstr "E-posta"
+
+msgid "Председатель Совета Правления: %(name)s"
+msgstr "Yönetim Kurulu Başkanı: %(name)s"
+
+msgid "Председатель совета правления"
+msgstr "Yönetim Kurulu Başkanı"
+
+msgid "Представитель и контакты"
+msgstr "Temsilci ve iletişim bilgileri"
+
+msgid "Прикрепите резюме"
+msgstr "Özgeçmişinizi ekleyin"
+
+msgid "Прикрепите резюме в формате PDF или DOCX."
+msgstr "Özgeçmişinizi PDF veya DOCX formatında ekleyin."
+
+msgid "Принята"
+msgstr "Kabul edildi"
+
+msgid "Приостановить"
+msgstr "Duraklat"
+
+msgid "Причина / основание решения"
+msgstr "Kararın nedeni / gerekçesi"
+
+msgid "Причина / основание: %(reason)s"
+msgstr "Neden / gerekçe: %(reason)s"
+
+msgid "Приём откликов до"
+msgstr "Son başvuru tarihi:"
+
+msgid ""
+"Проверьте отмеченные поля. Перед повторной отправкой прикрепите резюме ещё "
+"раз."
+msgstr ""
+"İşaretli alanları kontrol edin. Yeniden göndermeden önce özgeçmişinizi "
+"tekrar ekleyin."
+
+msgid "Продолжить"
+msgstr "Devam et"
+
+msgid "Проектная работа"
+msgstr "Proje bazlı"
+
+msgid "Прошедшие мероприятия"
+msgstr "Geçmiş etkinlikler"
+
+msgid "Публикации об официальных встречах скоро появятся."
+msgstr "Resmî görüşmelere ilişkin yayınlar yakında eklenecektir."
+
+msgid "Работа в компаниях нашего сообщества"
+msgstr "Topluluğumuzdaki şirketlerde kariyer"
+
+msgid "Рабочий телефон"
+msgstr "İş telefonu"
+
+msgid ""
+"Рабочий: %(work)s\n"
+"Мобильный: %(mobile)s"
+msgstr ""
+"İş: %(work)s\n"
+"Cep: %(mobile)s"
+
+msgid "Размер файла в байтах"
+msgstr "Dosya boyutu (bayt)"
+
+msgid "Расскажите о себе"
+msgstr "Kendinizi tanıtın"
+
+msgid ""
+"Расскажите о себе и прикрепите резюме — общую заявку можно отправить в любое"
+" время."
+msgstr ""
+"Kendinizi tanıtın ve özgeçmişinizi ekleyin; istediğiniz zaman genel başvuru "
+"yapabilirsiniz."
+
+msgid "Рассмотрел"
+msgstr "Değerlendiren"
+
+msgid "Рассмотрел сотрудник"
+msgstr "Değerlendiren personel"
+
+msgid "Регистрация на мероприятие"
+msgstr "Etkinliğe kayıt ol"
+
+msgid "Резюме"
+msgstr "Özgeçmiş"
+
+msgid "Резюме отправлено"
+msgstr "Özgeçmiş gönderildi"
+
+msgid "Рекомендации"
+msgstr "Referanslar"
+
+msgid ""
+"Решение: не принято.\n"
+"Номер решения: ________________    Дата: ________________"
+msgstr ""
+"Karar: henüz verilmedi.\n"
+"Karar numarası: ________________    Tarih: ________________"
+
+msgid "СЛЕДУЮЩИЙ ШАГ"
+msgstr "SONRAKİ ADIM"
+
+msgid "Сайт"
+msgstr "Web sitesi"
+
+msgid "Сайт компании"
+msgstr "Şirketin web sitesi"
+
+msgid "Сбросить"
+msgstr "Temizle"
+
+msgid "Связаться с нами"
+msgstr "Bize ulaşın"
+
+msgid "Связаться: %(v0)s"
+msgstr "İletişim: %(v0)s"
+
+msgid ""
+"Согласен(на) на обработку указанных мной данных и резюме общественным "
+"объединением TÜKİD для рассмотрения моей кандидатуры на работу."
+msgstr ""
+"İş başvurumun değerlendirilmesi amacıyla paylaştığım bilgilerin ve "
+"özgeçmişimin TÜKİD tarafından işlenmesine onay veriyorum."
+
+msgid "Согласие на обработку данных"
+msgstr "Verilerin işlenmesine onay"
+
+msgid "Спасибо! Ваша заявка принята."
+msgstr "Teşekkürler! Başvurunuz alındı."
+
+msgid "Стажировка"
+msgstr "Staj"
+
+msgid "Статус"
+msgstr "Durum"
+
+msgid "Статус заявки"
+msgstr "Başvuru durumu"
+
+msgid "Стать членом объединения"
+msgstr "Üye ol"
+
+msgid "Страница %(number)s"
+msgstr "Sayfa %(number)s"
+
+msgid "Страницы списка"
+msgstr "Liste sayfaları"
+
+msgid "Сфера деятельности"
+msgstr "Faaliyet alanı"
+
+msgid "Сфера деятельности и краткая информация"
+msgstr "Faaliyet alanı ve kısa bilgi"
+
+msgid "Сформировано из электронной заявки. Подписи проставляются на бумаге."
+msgstr "Elektronik başvurudan oluşturulmuştur. İmzalar kağıt üzerinde atılır."
+
+msgid "ТУРЦИЯ"
+msgstr "TÜRKİYE"
+
+msgid "Тег:"
+msgstr "Etiket:"
+
+msgid "Текст подтверждённого заявления"
+msgstr "Onaylanan beyanın metni"
+
+msgid "Текст согласия при отправке"
+msgstr "Başvuru anındaki onay metni"
+
+msgid "Телефон"
+msgstr "Telefon"
+
+msgid "Телефоны"
+msgstr "Telefon numaraları"
+
+msgid "Требования"
+msgstr "Aranan nitelikler"
+
+msgid "Удалите непечатаемые символы."
+msgstr "Yazdırılamayan karakterleri kaldırın."
+
+msgid "Удалённо"
+msgstr "Uzaktan"
+
+msgid "Укажите желаемую должность для общей заявки."
+msgstr "Genel başvuru için istediğiniz pozisyonu belirtin."
+
+msgid "Укажите контакты, желаемую должность и опыт работы."
+msgstr ""
+"İletişim bilgilerinizi, istediğiniz pozisyonu ve iş deneyiminizi belirtin."
+
+msgid "Укажите номер с кодом страны."
+msgstr "Telefon numaranızı ülke koduyla birlikte belirtin."
+
+msgid "Условия"
+msgstr "Çalışma koşulları"
+
+msgid "Участники встречи"
+msgstr "Görüşme katılımcıları"
+
+msgid "ФИО"
+msgstr "Adı soyadı"
+
+msgid "ФИО заявителя"
+msgstr "Başvuru sahibinin adı ve soyadı"
+
+msgid "Файл резюме должен быть непустым и не больше 5 МБ."
+msgstr "Özgeçmiş dosyası boş olmamalı ve 5 MB'ı aşmamalıdır."
+
+msgid "Формат файла"
+msgstr "Dosya formatı"
+
+msgid "Фотографии встречи"
+msgstr "Görüşmeden fotoğraflar"
+
+msgid "Фотография официальной встречи TÜKİD"
+msgstr "TÜKİD resmî görüşme fotoğrafı"
+
+msgid "Цель встречи"
+msgstr "Görüşmenin amacı"
+
+msgid "Цель:"
+msgstr "Amaç:"
+
+msgid "Частичная занятость"
+msgstr "Yarı zamanlı"
+
+msgid "Читать далее"
+msgstr "Devamını oku"
+
+msgid "Член объединения TUKID"
+msgstr "TUKID üyesi"
+
+msgid "Членский номер"
+msgstr "Üyelik numarası"
+
+msgid "Членский №: %(number)s"
+msgstr "Üyelik no: %(number)s"
+
+msgid "Электронная почта"
+msgstr "E-posta"
+
+msgid ""
+"Я прочитал(а) Устав ОО. Ознакомился(ась) с целями и обязательствами и "
+"принимаю их. Хочу стать членом. Обязуюсь оплачивать членские взносы каждый "
+"год, а также активно участвовать и вносить вклад в деятельность ОО. Прошу "
+"принять меня в членство."
+msgstr ""
+"Derneğin tüzüğünü okudum. Amaçlarını ve yükümlülüklerini öğrendim ve kabul "
+"ediyorum. Üye olmak istiyorum. Üyelik aidatlarını her yıl ödemeyi, derneğin "
+"faaliyetlerine aktif olarak katılmayı ve katkıda bulunmayı taahhüt ediyorum."
+" Üyeliğe kabul edilmemi arz ederim."
+
+msgid "Язык заявки"
+msgstr "Başvuru dili"
+
+msgid "Язык сайта"
+msgstr "Site dili"
+
+msgid "включительно."
+msgstr "dahil."
+
+msgid "года"
+msgstr "yılı"
+
+msgid "из"
+msgstr "/"
+
+msgid "не указан"
+msgstr "belirtilmemiş"
+
+msgid "— предпринимательство, культура, солидарность и дружба"
+msgstr "— girişimcilik, kültür, dayanışma ve dostluk"
+
+msgid "???????????? ?????? ???????."
+msgstr "Ge?ersiz istek boyutu."
+
+msgid "?????? ??????? ????????? ?????????? ??????."
+msgstr "?stek boyutu izin verilen s?n?r? a??yor."
+
+msgid "???????? ???????? ??????????. ?????????? ???????."
+msgstr "G?nderim ge?ici olarak kullan?lam?yor. Daha sonra tekrar deneyin."
+
+msgid "??????? ????? ????????. ?????????? ??????? ???????."
+msgstr "?ok fazla istek g?nderildi. Biraz sonra tekrar deneyin."
+
+msgid "???? ?????? ?????? ???? ?? ?????? 5 ??."
+msgstr "?zge?mi? dosyas? 5 MB boyutunu a?mamal?d?r."

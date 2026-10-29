@@ -1,0 +1,10 @@
+{% extends 'core/page_layout.html' %}
+{% load i18n %}
+
+{% block page_content %}
+{% if selected_tag %}
+<p class="mb-4">{% translate "Тег:" %} <strong>{{ selected_tag.i18n.name }}</strong> · <a href="{% url 'core:news' %}">{% translate "Все новости" %}</a></p>
+{% endif %}
+{% include 'core/news/cards.html' with articles=page_obj %}
+{% include 'core/includes/pagination.html' %}
+{% endblock %}

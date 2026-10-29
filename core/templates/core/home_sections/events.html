@@ -1,0 +1,25 @@
+{% load i18n %}
+<section id="events" class="section bg-color-light border-0 m-0 py-5">
+    <div class="container py-lg-4">
+        <div class="row align-items-center gy-3 section-head">
+            <div class="col-lg-8">
+                <p class="section-eyebrow">{{ section.i18n.eyebrow }}</p>
+                <h2 class="section-heading text-transform-none mb-0">{{ section.i18n.title }}</h2>
+            </div>
+            <div class="col-lg-4 text-lg-end">{% if section.i18n.link_label and section.link_url and section.link_visible %}<a class="btn btn-outline btn-primary font-weight-semibold px-4 py-3" href="{{ section.link_url }}">{{ section.i18n.link_label }} <i class="fas fa-arrow-right ms-2" aria-hidden="true"></i></a>{% endif %}</div>
+        </div>
+        <div class="row g-4">
+            {% for event in home_events %}
+            <div class="col-12">{% include 'core/includes/home_event_card.html' with agenda=True %}</div>
+            {% empty %}
+            <div class="col-12"><div class="row align-items-center gy-4 empty-state">
+                <div class="col-md-4">{% include 'core/includes/home_photo.html' with src=section.image_url alt=section.i18n.image_alt ratio='ratio-16x9' %}</div>
+                <div class="col-md-8">
+                    <h3 class="text-color-dark text-5 font-weight-bold text-transform-none">{% translate "Анонсы скоро появятся" %}</h3>
+                    <p class="text-4 line-height-7 mb-0">{{ section.i18n.description }}</p>
+                </div>
+            </div></div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

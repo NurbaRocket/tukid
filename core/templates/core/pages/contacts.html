@@ -1,0 +1,15 @@
+{% extends 'core/pages/information.html' %}
+{% load i18n %}
+
+{% block extra_information %}
+<div class="row g-4 mt-3">
+    <div class="col-lg-8 contact-panel">
+        <ul class="list list-icons list-icons-lg text-4 line-height-7">
+            <li><i class="fas fa-location-dot text-color-primary" aria-hidden="true"></i>{{ site_settings.i18n.address }}{% if site_settings.maps_url %} <a href="{{ site_settings.maps_url }}" target="_blank" rel="noopener noreferrer">{% translate "На карте" %}</a>{% endif %}</li>
+            <li><i class="fas fa-phone text-color-primary" aria-hidden="true"></i><a href="tel:{{ site_settings.phone_link }}">{{ site_settings.phone }}</a></li>
+            <li><i class="far fa-envelope text-color-primary" aria-hidden="true"></i><a href="mailto:{{ site_settings.email }}">{{ site_settings.email }}</a></li>
+            {% if site_settings.whatsapp_url %}<li><i class="fab fa-whatsapp text-color-primary" aria-hidden="true"></i><a href="{{ site_settings.whatsapp_url }}" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>{% endif %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

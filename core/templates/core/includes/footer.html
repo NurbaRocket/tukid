@@ -1,0 +1,46 @@
+{% load i18n %}
+{% load static %}
+<footer id="footer" class="mt-0 border-color-primary text-3">
+    <div class="container">
+        <div class="row gy-5 py-5">
+            <div class="col-md-6 col-lg-4">
+                <a href="{% url 'core:home' %}" class="logo d-inline-block mb-4" aria-label="{% blocktranslate with v0=site_settings.i18n.name %}{{ v0 }} — главная{% endblocktranslate %}">
+                    <img src="{{ site_settings.footer_logo_url }}" alt="{{ site_settings.i18n.name }}" width="150" height="50" class="img-fluid">
+                </a>
+                <p class="text-4 text-color-light line-height-7 mb-4">{{ site_settings.i18n.footer_text|default:site_settings.i18n.organization_name }}</p>
+                {% if 'about' in published_pages %}<a href="{% url 'core:about' %}" class="text-4 text-color-light font-weight-semibold text-decoration-none">{% translate "Об объединении" %} <i class="fas fa-arrow-right ms-2 text-color-primary" aria-hidden="true"></i></a>{% endif %}
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <h2 class="text-5 font-weight-semibold text-transform-none mb-4">{% translate "Навигация" %}</h2>
+                <nav aria-label="{% translate "Навигация в подвале" %}">
+                    <ul class="list-unstyled text-4 line-height-7 mb-0">
+    {% for item in site_menu %}{% if item.url %}<li class="mb-2"><a class="text-color-light text-decoration-none" href="{{ item.url }}">{{ item.i18n.title }}</a></li>{% endif %}{% endfor %}
+</ul>
+                </nav>
+            </div>
+            <div class="col-lg-5">
+                <h2 class="text-5 font-weight-semibold text-transform-none mb-4">{% translate "Контакты" %}</h2>
+                <ul class="list list-icons list-icons-lg mb-4">
+                    <li class="mb-3"><i class="fas fa-location-dot text-color-primary" aria-hidden="true"></i><p class="text-4 text-color-light line-height-7 m-0">{{ site_settings.i18n.address }}</p></li>
+                    <li class="mb-3"><i class="fas fa-phone text-color-primary" aria-hidden="true"></i><p class="text-4 line-height-7 m-0"><a href="tel:{{ site_settings.phone_link }}" class="text-color-light text-decoration-none">{{ site_settings.phone }}</a></p></li>
+                    <li><i class="far fa-envelope text-color-primary" aria-hidden="true"></i><p class="text-4 line-height-7 m-0"><a href="mailto:{{ site_settings.email }}" class="text-color-light text-decoration-none">{{ site_settings.email }}</a></p></li>
+                </ul>
+                <p class="text-4 text-color-light font-weight-semibold mb-3">{% translate "Мы на связи" %}</p>
+                <ul class="social-icons social-icons-big social-icons-clean-with-border social-icons-clean-with-border-border-grey">
+                    {% if site_settings.facebook_url %}<li class="social-icons-facebook me-2"><a href="{{ site_settings.facebook_url }}" target="_blank" rel="noopener noreferrer" title="Facebook" aria-label="{% blocktranslate with v0=site_settings.i18n.name %}{{ v0 }} в Facebook{% endblocktranslate %}"><i class="fab fa-facebook-f text-5" aria-hidden="true"></i></a></li>{% endif %}
+                    {% if site_settings.instagram_url %}<li class="social-icons-instagram me-2"><a href="{{ site_settings.instagram_url }}" target="_blank" rel="noopener noreferrer" title="Instagram" aria-label="{% blocktranslate with v0=site_settings.i18n.name %}{{ v0 }} в Instagram{% endblocktranslate %}"><i class="fab fa-instagram text-5" aria-hidden="true"></i></a></li>{% endif %}
+                    {% if site_settings.whatsapp_url %}<li class="social-icons-whatsapp"><a href="{{ site_settings.whatsapp_url }}" target="_blank" rel="noopener noreferrer" title="WhatsApp" aria-label="{% blocktranslate with v0=site_settings.i18n.name %}Написать {{ v0 }} в WhatsApp{% endblocktranslate %}"><i class="fab fa-whatsapp text-5" aria-hidden="true"></i></a></li>{% endif %}
+                {% if site_settings.telegram_url %}<li class="social-icons-telegram"><a href="{{ site_settings.telegram_url }}" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><i class="fab fa-telegram text-5" aria-hidden="true"></i></a></li>{% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container py-4">
+            <div class="row gy-3 align-items-center">
+                <div class="col-lg-7 text-center text-lg-start"><p class="text-3-5 text-color-light line-height-7 mb-0">© {% now 'Y' %} {{ site_settings.i18n.name }}. {{ site_settings.i18n.copyright_text }}</p></div>
+                {% if 'contacts' in published_pages %}<div class="col-lg-5 text-center text-lg-end"><a href="{% url 'core:contacts' %}" class="text-3-5 text-color-light text-decoration-none">{% translate "Связаться с нами" %} <i class="fas fa-angle-right ms-1 text-color-primary" aria-hidden="true"></i></a></div>{% endif %}
+            </div>
+        </div>
+    </div>
+</footer>

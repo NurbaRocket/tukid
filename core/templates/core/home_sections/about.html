@@ -1,0 +1,18 @@
+{% load i18n %}
+<section id="about" class="section bg-color-light border-0 m-0 py-5">
+    <div class="container py-lg-4">
+        <div class="row align-items-center gy-4 gx-lg-5">
+            <div class="col-lg-6">
+                {% include 'core/includes/home_photo.html' with src=section.image_url alt=section.i18n.image_alt %}
+            </div>
+            <div class="col-lg-6">
+                <p class="text-color-primary font-weight-semibold text-3 mb-2">{{ section.i18n.eyebrow }}</p>
+                <h2 class="text-color-dark font-weight-bold text-8 line-height-3 text-transform-none mb-4">{{ section.i18n.title }}</h2>
+                <div class="text-4 line-height-8 text-color-dark mb-4">
+                    {{ section.i18n.description|linebreaks }}
+                </div>
+                {% if section.i18n.link_label and section.link_url and section.link_visible %}<a class="btn btn-outline btn-primary font-weight-semibold px-4 py-3" href="{{ section.link_url }}">{{ section.i18n.link_label }} <i class="fas fa-arrow-right ms-2" aria-hidden="true"></i></a>{% endif %}
+            </div>
+        </div>
+    </div>
+</section>

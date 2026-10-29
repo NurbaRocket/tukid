@@ -1,0 +1,50 @@
+{% extends 'core/page_layout.html' %}
+{% load i18n %}
+{% load content %}
+
+{% block page_content %}
+{% include 'core/includes/demo_notice.html' with object=member %}
+<a class="d-inline-block mb-4" href="{% url 'core:members' %}"><i class="fas fa-arrow-left me-2" aria-hidden="true"></i>{% translate "Все члены объединения" %}</a>
+<div class="row gy-4">
+    <aside class="col-lg-4">
+        <div class="card">
+            {% if member.logo %}
+                <div class="member-logo-box"><img class="member-logo" src="{{ member.logo.url }}" alt="{% blocktranslate with v0=member.i18n.name %}Логотип {{ v0 }}{% endblocktranslate %}" width="240" height="120"></div>
+            {% endif %}
+            <div class="card-body">
+                <h2 class="text-5 font-weight-bold text-transform-none mb-3">{% translate "Контакты компании" %}</h2>
+                <dl class="member-contacts mb-0">
+                    {% if member.i18n.city %}<dt>{% translate "Город" %}</dt><dd>{{ member.i18n.city }}</dd>{% endif %}
+                    {% if member.i18n.address %}<dt>{% translate "Адрес" %}</dt><dd>{{ member.i18n.address }}</dd>{% endif %}
+                    {% if member.phone %}<dt>{% translate "Телефон" %}</dt><dd><a href="tel:{{ member.phone_link }}">{{ member.phone }}</a></dd>{% endif %}
+                    {% if member.email %}<dt>{% translate "Почта" %}</dt><dd><a href="mailto:{{ member.email }}">{{ member.email }}</a></dd>{% endif %}
+                    {% if member.website %}<dt>{% translate "Сайт" %}</dt><dd><a href="{{ member.website }}" target="_blank" rel="noopener noreferrer">{% translate "Сайт компании" %} <i class="fas fa-arrow-up-right-from-square ms-1" aria-hidden="true"></i></a></dd>{% endif %}
+                    {% if member.i18n.director_name %}<dt>{% translate "Генеральный директор" %}</dt><dd>{{ member.i18n.director_name }}</dd>{% endif %}
+                    {% if member.member_since %}<dt>{% translate "В объединении с" %}</dt><dd>{{ member.member_since|date:'Y' }} {% translate "года" %}</dd>{% endif %}
+                </dl>
+            </div>
+        </div>
+    </aside>
+    <div class="col-lg-8">
+        <h2 class="text-6 font-weight-bold text-transform-none">{% translate "О компании" %}</h2>
+        <div class="d-flex flex-wrap gap-2 mb-4">
+            {% for sector in member.sectors.all %}<a class="badge bg-light text-dark border" href="{% url 'core:members' %}?sector={{ sector.slug|urlencode }}">{{ sector.i18n.name }}</a>{% endfor %}
+        </div>
+        <div class="page-prose">{% if member.i18n.description %}{{ member.i18n.description|richtext }}{% else %}<p>{% translate "Описание компании скоро появится." %}</p>{% endif %}</div>
+        {% if member_vacancies and 'career' in published_pages %}
+        <section class="mt-5" aria-labelledby="member-vacancies-title">
+            <h2 id="member-vacancies-title" class="text-6 font-weight-bold text-transform-none mb-4">{% translate "Вакансии компании" %}</h2>
+            <div class="row g-4">{% for vacancy in member_vacancies %}<div class="col-md-6">{% include 'core/career/vacancy_card.html' %}</div>{% endfor %}</div>
+            <a class="card-link mt-4" href="{% url 'core:career' %}?company={{ member.slug|urlencode }}#vacancies">{% translate "Все вакансии компании" %} <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+        </section>
+        {% endif %}
+        {% if member.news_tag %}
+        <section class="mt-5" aria-labelledby="member-news-title">
+            <h2 id="member-news-title" class="text-6 font-weight-bold text-transform-none">{% translate "Новости компании" %}</h2>
+            {% include 'core/news/cards.html' with articles=related_news %}
+            <a class="d-inline-block mt-3" href="{% url 'core:news' %}?tag={{ member.news_tag.slug|urlencode }}">{% translate "Все новости по тегу «" %}{{ member.news_tag.i18n.name }}»</a>
+        </section>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

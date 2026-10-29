@@ -1,0 +1,21 @@
+{% load i18n %}
+<section id="community" class="section bg-color-light border-0 m-0 py-5">
+    <div class="container py-lg-4">
+        <p class="text-color-primary font-weight-semibold text-3 mb-2">{{ section.i18n.eyebrow }}</p>
+        <h2 class="text-color-dark font-weight-bold text-8 line-height-3 text-transform-none mb-3">{{ section.i18n.title }}</h2>
+        <p class="text-4 line-height-7 mb-4">{{ section.i18n.description }}</p>
+        <div class="row g-4">
+            {% for photo in home_gallery %}
+            <div class="col-sm-6 col-lg-3"><figure class="mb-0">
+                {% include 'core/includes/home_photo.html' with src=photo.image_url alt=photo.i18n.image_alt|default:photo.i18n.title %}
+                <figcaption class="text-color-dark text-4 font-weight-semibold mt-3">{{ photo.i18n.title }}</figcaption>
+            </figure></div>
+            {% endfor %}
+        </div>
+        <div class="d-flex flex-wrap align-items-center gap-3 mt-5">
+            <p class="text-4 text-color-dark mb-0">{% translate "Больше событий и фотографий — в наших социальных сетях:" %}</p>
+            {% if site_settings.instagram_url %}<a class="btn btn-outline btn-primary font-weight-semibold" href="{{ site_settings.instagram_url }}" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram me-2" aria-hidden="true"></i>Instagram</a>{% endif %}
+            {% if site_settings.facebook_url %}<a class="btn btn-outline btn-primary font-weight-semibold" href="{{ site_settings.facebook_url }}" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f me-2" aria-hidden="true"></i>Facebook</a>{% endif %}
+        </div>
+    </div>
+</section>

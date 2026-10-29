@@ -1,0 +1,22 @@
+{% extends 'core/pages/information.html' %}
+{% load i18n %}
+{% load content %}
+
+{% block extra_information %}
+<div class="row g-4 mt-3">
+    {% for person in board_members %}
+    <div class="col-md-6 col-lg-4">
+        <article class="card content-card h-100">
+            {% if person.photo %}<img class="board-photo" src="{{ person.photo.url }}" alt="{{ person.i18n.name }}" width="600" height="450" loading="lazy">{% endif %}
+            <div class="card-body p-4">
+                {% if person.is_demo %}<div class="mb-2">{% include 'core/includes/demo_badge.html' with object=person %}</div>{% endif %}
+                <h2 class="text-5 font-weight-bold text-transform-none mb-2">{{ person.i18n.name }}</h2>
+                <p class="text-color-primary font-weight-semibold mb-3">{{ person.i18n.position }}</p>
+                {% if person.company.is_published %}<p><a href="{{ person.company.get_absolute_url }}">{{ person.company.i18n.name }}</a></p>{% endif %}
+                <div class="text-4 line-height-7">{{ person.i18n.biography|richtext }}</div>
+            </div>
+        </article>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

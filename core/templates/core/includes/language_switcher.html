@@ -1,0 +1,8 @@
+{% load i18n %}
+<form action="{% url 'set_language' %}" method="post" class="language-switcher" aria-label="{% translate 'Язык сайта' %}">
+    {% csrf_token %}
+    <input type="hidden" name="next" value="{{ request.get_full_path }}">
+    {% for language in language_options %}
+    <button type="submit" name="language" value="{{ language.code }}" lang="{{ language.code }}" title="{{ language.name }}" aria-label="{{ language.name }}"{% if language.active %} class="is-active" aria-current="true" disabled{% endif %}>{{ language.code|upper }}</button>
+    {% endfor %}
+</form>

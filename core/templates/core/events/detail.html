@@ -1,0 +1,24 @@
+{% extends 'core/page_layout.html' %}
+{% load i18n %}
+{% load content %}
+
+{% block page_content %}
+<div class="row article-layout">
+    <div class="col-12">
+        {% include 'core/includes/demo_notice.html' with object=event %}
+        <a class="d-inline-block mb-4" href="{% url 'core:events' %}"><i class="fas fa-arrow-left me-2" aria-hidden="true"></i>{% translate "Все мероприятия" %}</a>
+        {% if event.image %}<img class="img-fluid article-cover mb-4" src="{{ event.image.url }}" alt="{{ event.i18n.image_alt|default:event.i18n.title }}">{% endif %}
+        <dl class="article-panel mb-4">
+            <dt>{% translate "Начало" %}</dt><dd><time datetime="{{ event.starts_at|date:'c' }}">{{ event.starts_at|date:'d E Y, H:i' }}</time></dd>
+            {% if event.ends_at %}<dt>{% translate "Окончание" %}</dt><dd>{{ event.ends_at|date:'d E Y, H:i' }}</dd>{% endif %}
+            {% if event.i18n.location %}<dt>{% translate "Место проведения" %}</dt><dd>{{ event.i18n.location }}</dd>{% endif %}
+        </dl>
+        <div class="page-prose">{{ event.i18n.description|richtext }}</div>
+        {% if event.is_past %}
+            <p class="text-muted">{% translate "Мероприятие завершено." %}</p>
+        {% elif event.registration_url %}
+            <a class="btn btn-primary" href="{{ event.registration_url }}" target="_blank" rel="noopener noreferrer">{% translate "Регистрация на мероприятие" %} <i class="fas fa-arrow-up-right-from-square ms-2" aria-hidden="true"></i></a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

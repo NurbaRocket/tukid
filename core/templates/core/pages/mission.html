@@ -1,0 +1,12 @@
+{% extends 'core/page_layout.html' %}
+{% load i18n %}
+{% load content %}
+
+{% block page_content %}
+<article class="mission-document" aria-label="{{ page.i18n.title }}">
+    {% if page.image %}<img class="img-fluid article-cover mb-5" src="{{ page.image.url }}" alt="{{ page.i18n.image_alt|default:page.i18n.title }}">{% endif %}
+    <div class="mission-copy">
+        {% if page.i18n.body %}{{ page.i18n.body|richtext }}{% else %}<p>{% translate "Информация будет опубликована позже." %}</p>{% endif %}
+    </div>
+</article>
+{% endblock %}

@@ -1,0 +1,108 @@
+# Include this file inside nginx's http {} context.
+# Replace example.com, the certificate paths, and /srv/tukid with real values.
+# Run the application with config.production on 127.0.0.1:8000 only.
+# Enable its trusted-proxy setting for this loopback nginx proxy; never expose
+# that application port publicly. nginx overwrites the forwarded headers below.
+
+# Limit POSTs across both forms per client, including translated URLs.
+# An empty key exempts GET/HEAD requests from the submission rate limit.
+map $request_method $form_post_client {
+    default "";
+    POST $binary_remote_addr;
+}
+limit_req_zone $form_post_client zone=form_posts:10m rate=6r/m;
+limit_conn_zone $binary_remote_addr zone=form_connections:10m;
+
+# Reject unrecognised hosts before forwarding anything to Django.
+server {
+    listen 80 default_server;
+    server_name _;
+    return 444;
+}
+server {
+    listen 443 ssl default_server;
+    server_name _;
+    ssl_reject_handshake on;
+}
+
+server {
+    listen 80;
+    server_name example.com;
+    return 308 https://example.com$request_uri;
+}
+
+server {
+    listen 443 ssl;
+    server_name example.com;
+
+    ssl_certificate /etc/letsencrypt/live/example.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem;
+    ssl_protocols TLSv1.2 TLSv1.3;
+
+    server_tokens off;
+    autoindex off;
+    add_header X-Content-Type-Options nosniff always;
+    add_header Strict-Transport-Security "max-age=3600" always;
+
+    client_max_body_size 8m;
+    client_body_timeout 15s;
+    client_header_timeout 15s;
+    send_timeout 30s;
+    keepalive_timeout 30s;
+    limit_req_status 429;
+    limit_conn_status 429;
+
+    proxy_http_version 1.1;
+    proxy_set_header Connection "";
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $remote_addr;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    # The edge sets these headers for both Django and direct file responses.
+    proxy_hide_header X-Content-Type-Options;
+    proxy_hide_header Strict-Transport-Security;
+    proxy_connect_timeout 5s;
+    proxy_read_timeout 30s;
+    proxy_send_timeout 30s;
+    proxy_request_buffering on;
+
+    # No PHP handler is configured. Reject even source-file downloads.
+    # Prefix locations below intentionally allow these regex locations to win.
+    location ~* \.(?:php[0-9]?|phtml|phar)(?:/|$) {
+        return 404;
+    }
+    location ~ /\. {
+        return 404;
+    }
+
+    location /static/ {
+        alias /srv/tukid/staticfiles/;
+        expires 1h;
+    }
+
+    location /media/ {
+        alias /srv/tukid/media/;
+        add_header X-Content-Type-Options nosniff always;
+        add_header Strict-Transport-Security "max-age=3600" always;
+        add_header Content-Security-Policy "sandbox; default-src 'none'; style-src 'unsafe-inline'; img-src data:" always;
+    }
+
+    location ~ ^/(?:ky/|tr/)?career/$ {
+        # A 5 MiB resume plus form fields and multipart boundaries.
+        client_max_body_size 6m;
+        limit_req zone=form_posts burst=3 nodelay;
+        limit_conn form_connections 3;
+        proxy_pass http://127.0.0.1:8000;
+    }
+
+    location ~ ^/(?:ky/|tr/)?membership/$ {
+        client_max_body_size 64k;
+        limit_req zone=form_posts burst=3 nodelay;
+        limit_conn form_connections 3;
+        proxy_pass http://127.0.0.1:8000;
+    }
+
+    location / {
+        proxy_pass http://127.0.0.1:8000;
+    }
+}

@@ -1,0 +1,30 @@
+{% load i18n %}
+<section id="members" class="section bg-color-grey border-0 m-0 py-4">
+    <div class="container py-lg-2">
+        <div class="row align-items-center gy-3 mb-3">
+            <div class="col-lg-7">
+                <p class="section-eyebrow">{{ section.i18n.eyebrow }}</p>
+                <h2 class="section-heading text-transform-none mb-0">{{ section.i18n.title }}</h2>
+            </div>
+            <div class="col-lg-5 d-flex flex-wrap justify-content-lg-end align-items-center gap-3">
+                <button type="button" class="btn btn-light btn-sm text-3" data-marquee-toggle data-label-pause="{% translate "Приостановить" %}" data-label-play="{% translate "Продолжить" %}" aria-controls="member-logos" aria-pressed="false" hidden><span data-marquee-label>{% translate "Приостановить" %}</span></button>
+                {% if section.i18n.link_label and section.link_url and section.link_visible %}<a class="font-weight-semibold text-3" href="{{ section.link_url }}">{{ section.i18n.link_label }} <i class="fas fa-arrow-right ms-2" aria-hidden="true"></i></a>{% endif %}
+            </div>
+        </div>
+        {% if home_member_logos %}
+        <div id="member-logos" class="overflow-auto" data-member-marquee role="region" aria-label="{% translate "Логотипы членов TÜKİD" %}">
+            <div class="d-inline-flex align-items-center gap-4 py-3 pe-4" data-member-track>
+                {% for member in home_member_logos %}
+                <a class="d-inline-flex flex-shrink-0 align-items-center justify-content-center bg-color-light rounded px-4 py-3 border" href="{{ member.get_absolute_url }}" title="{{ member.i18n.name }}">
+                    <img src="{{ member.logo.url }}" alt="{{ member.i18n.name }}" width="160" height="80" class="object-fit-contain" loading="lazy">
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+        {% else %}
+        <div class="bg-color-light rounded p-4">
+            <p class="text-4 line-height-7 mb-0">{% translate "Здесь появятся логотипы компаний — членов TÜKİD." %}</p>
+        </div>
+        {% endif %}
+    </div>
+</section>

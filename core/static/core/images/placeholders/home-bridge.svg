@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1000" viewBox="0 0 1200 1000" fill="none">
+  <defs>
+    <linearGradient id="sky" x2="1200" y2="1000" gradientUnits="userSpaceOnUse"><stop stop-color="#fff7f3"/><stop offset="1" stop-color="#e9eff6"/></linearGradient>
+    <linearGradient id="bridge" x1="0" y1="500" x2="1200" y2="600" gradientUnits="userSpaceOnUse"><stop stop-color="#e64a44"/><stop offset="1" stop-color="#b62f2b"/></linearGradient>
+  </defs>
+  <path fill="url(#sky)" d="M0 0h1200v1000H0z"/>
+  <circle cx="850" cy="240" r="145" fill="#ffe2d8"/>
+  <circle cx="850" cy="240" r="195" stroke="#ecdcd6"/>
+  <path d="m0 620 210-170 170 145 180-210 240 230 200-155 200 160v380H0Z" fill="#d8e2eb"/>
+  <path d="m300 470 80 125 180-210 240 230 200-155 200 160v380H300Z" fill="#c5d3df"/>
+  <path d="m495 460 65-75 75 72-77-30Z" fill="#fff" fill-opacity=".8"/>
+  <path d="M0 700c260-90 395 20 600-35s365-80 600 20v315H0Z" fill="#edf1f5"/>
+  <path d="M0 800c250-30 360-160 600-160s350 130 600 160" stroke="url(#bridge)" stroke-width="22"/>
+  <path d="M200 500v360m800-360v360M0 860h1200" stroke="#a92f2b" stroke-width="15"/>
+  <path d="M200 530c270 220 530 220 800 0" stroke="#d74a43" stroke-width="9"/>
+  <path d="M300 598v262m100-209v209m100-177v177m100-167v167m100-177v177m100-209v209m100-262v262" stroke="#c74a44" stroke-width="4"/>
+  <path d="M0 910h1200M100 955h220m480 0h190" stroke="#d6e0e9" stroke-width="3"/>
+  <rect x="66" y="70" width="345" height="58" rx="29" fill="#fff" fill-opacity=".8"/>
+  <circle cx="102" cy="99" r="7" fill="#FE423D"/>
+  <text x="126" y="107" font-family="Arial,sans-serif" font-size="23" fill="#46556a">Место для фотографии</text>
+</svg>

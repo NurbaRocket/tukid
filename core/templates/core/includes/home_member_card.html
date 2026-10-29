@@ -1,0 +1,14 @@
+{% load i18n %}
+<article class="card h-100 border-0">
+    <div class="card-body p-4">
+        <a class="ratio ratio-21x9 mb-4" href="{{ member.get_absolute_url }}" aria-label="{% blocktranslate with v0=member.i18n.name %}О компании {{ v0 }}{% endblocktranslate %}">
+            {% if member.logo %}
+                <img class="object-fit-contain" src="{{ member.logo.url }}" alt="{% blocktranslate with v0=member.i18n.name %}Логотип {{ v0 }}{% endblocktranslate %}" loading="lazy" width="240" height="120">
+            {% else %}
+                <span class="d-flex align-items-center justify-content-center bg-color-grey rounded"><i class="fas fa-building text-color-primary text-8" aria-hidden="true"></i></span>
+            {% endif %}
+        </a>
+        <h3 class="text-5 line-height-4 font-weight-bold text-transform-none mb-2"><a class="text-color-dark" href="{{ member.get_absolute_url }}">{{ member.i18n.name }}</a></h3>
+        <p class="text-3 mb-0">{% for sector in member.sectors.all %}{{ sector.i18n.name }}{% if not forloop.last %} · {% endif %}{% empty %}{% translate "Член объединения TUKID" %}{% endfor %}</p>
+    </div>
+</article>

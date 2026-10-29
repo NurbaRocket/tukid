@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" fill="none">
+  <defs>
+    <linearGradient id="fold" x1="1150" y1="80" x2="1550" y2="480" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff" stop-opacity=".7"/>
+      <stop offset="1" stop-color="#ebebeb" stop-opacity=".35"/>
+    </linearGradient>
+    <linearGradient id="lower-fold" x1="0" y1="780" x2="300" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ededed" stop-opacity=".45"/>
+      <stop offset="1" stop-color="#fff" stop-opacity=".6"/>
+    </linearGradient>
+  </defs>
+  <path fill="#f7f7f7" d="M0 0h1600v900H0z"/>
+  <path fill="url(#fold)" d="m1180 0 420 450V0z"/>
+  <path fill="#fff" fill-opacity=".5" d="m1600 25-475 475h475z"/>
+  <path stroke="#e8e8e8" stroke-opacity=".6" d="m1600 25-475 475 475 400M1180 0l420 450"/>
+  <path fill="url(#lower-fold)" d="M0 635 265 900H0z"/>
+  <path stroke="#e8e8e8" stroke-opacity=".5" d="m0 635 265 265"/>
+</svg>

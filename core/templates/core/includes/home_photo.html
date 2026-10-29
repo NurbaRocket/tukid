@@ -1,0 +1,6 @@
+{% load i18n %}
+{% load static %}
+{# Replace image with the static path of the real photo; keep the template classes. #}
+<div class="ratio {{ ratio|default:'ratio-4x3' }} overflow-hidden rounded">
+    <img src="{% if src %}{{ src }}{% else %}{% static image %}{% endif %}" alt="{{ alt }}" class="object-fit-cover"{% if eager %} fetchpriority="high"{% else %} loading="lazy"{% endif %} width="1200" height="900">
+</div>

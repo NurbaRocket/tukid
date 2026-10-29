@@ -1,0 +1,47 @@
+{% extends 'core/page_layout.html' %}
+{% load i18n %}
+{% load form_fields %}
+
+{% block page_content %}
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <p class="text-4 line-height-7 mb-4">{% translate "Заполните заявку на вступление в" %} {{ site_settings.i18n.name }}{% translate ". Решение о приёме принимает Совет Правления. Поля со звёздочкой обязательны." %}</p>
+
+        <form class="membership-form" action="{% url 'core:membership' %}" method="post">
+            {% csrf_token %}
+            {{ form.submission_token }}
+            {{ form.website }}
+            {% if form.non_field_errors or form.submission_token.errors or form.website.errors %}
+            <div class="alert alert-danger text-3" role="alert">
+                {{ form.non_field_errors }}
+                {{ form.submission_token.errors }}
+                {{ form.website.errors }}
+            </div>
+            {% endif %}
+
+            {% for title, fields in form.sections %}
+            <fieldset class="mb-5">
+                <legend class="text-color-dark font-weight-bold text-5 mb-4">{{ title }}</legend>
+                <div class="row g-4">
+                    {% for name in fields %}
+                        {% include 'core/membership/field.html' with field=form|form_field:name %}
+                    {% endfor %}
+                </div>
+            </fieldset>
+            {% endfor %}
+
+            <fieldset class="border rounded p-4 mb-4">
+                <legend class="float-none w-auto px-2 text-color-dark font-weight-bold text-5">{% translate "Заявление о вступлении" %}</legend>
+                <p class="text-4 line-height-7">{{ membership_declaration }}</p>
+                <div class="form-check">
+                    {{ form.declaration_accepted }}
+                    <label class="form-check-label text-3 line-height-6" for="{{ form.declaration_accepted.id_for_label }}">{{ form.declaration_accepted.label }} <span class="text-color-primary">*</span></label>
+                    {% if form.declaration_accepted.errors %}<div id="id_declaration_accepted_errors" class="invalid-feedback d-block">{{ form.declaration_accepted.errors }}</div>{% endif %}
+                </div>
+            </fieldset>
+            <p class="text-3 line-height-6 mb-4">{% translate "После отправки заявка сохраняется для рассмотрения Советом Правления. Подпись в печатном экземпляре ставится от руки." %}</p>
+            <button class="btn btn-primary font-weight-semibold text-3 px-4 py-3" type="submit">{% translate "Отправить заявку" %} <i class="fas fa-arrow-right ms-2" aria-hidden="true"></i></button>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'core/page_layout.html' %}
+{% load i18n %}
+{% load content %}
+
+{% block page_content %}
+{% include 'core/includes/demo_notice.html' with object=vacancy %}
+<a class="card-link mb-4" href="{% url 'core:career' %}#vacancies"><i class="fas fa-arrow-left" aria-hidden="true"></i>{% translate "Все вакансии" %}</a>
+<div class="row gy-4 gx-lg-5">
+    <article class="col-lg-8">
+        <div class="d-flex flex-wrap align-items-center gap-2 mb-4">
+            <span class="badge bg-light text-dark border">{{ vacancy.get_employment_display }}</span>
+            <span class="badge bg-light text-dark border">{{ vacancy.get_work_mode_display }}</span>
+            {% if vacancy.i18n.location %}<span class="badge bg-light text-dark border">{{ vacancy.i18n.location }}</span>{% endif %}
+        </div>
+        <div class="page-prose">
+            <h2 class="mt-0">{% translate "Описание и задачи" %}</h2>
+            {{ vacancy.i18n.description|richtext }}
+            {% if vacancy.i18n.requirements %}<h2>{% translate "Требования" %}</h2>{{ vacancy.i18n.requirements|richtext }}{% endif %}
+            {% if vacancy.i18n.conditions %}<h2>{% translate "Условия" %}</h2>{{ vacancy.i18n.conditions|richtext }}{% endif %}
+        </div>
+        <a class="btn btn-primary mt-4" href="{% url 'core:career' %}?vacancy={{ vacancy.slug|urlencode }}#apply">{% translate "Откликнуться на вакансию" %} <i class="fas fa-arrow-right ms-2" aria-hidden="true"></i></a>
+    </article>
+    <aside class="col-lg-4">
+        <div class="article-panel">
+            {% if vacancy.company.logo %}<img class="career-employer-logo mb-4" src="{{ vacancy.company.logo.url }}" alt="{% blocktranslate with v0=vacancy.company.i18n.name %}Логотип {{ v0 }}{% endblocktranslate %}" width="240" height="100">{% endif %}
+            {% if vacancy.company.is_demo %}<div class="mb-2">{% include 'core/includes/demo_badge.html' with object=vacancy.company %}</div>{% endif %}
+            <h2 class="text-5 font-weight-bold text-transform-none mb-3">{{ vacancy.company.i18n.name }}</h2>
+            {% if vacancy.i18n.salary %}<p class="career-salary mb-3">{{ vacancy.i18n.salary }}</p>{% endif %}
+            <p class="text-3 mb-3"><i class="far fa-calendar me-2" aria-hidden="true"></i>{% translate "Опубликовано:" %} <time datetime="{{ vacancy.published_at|date:'c' }}">{{ vacancy.published_at|date:'d E Y' }}</time></p>
+            {% if vacancy.closes_on %}<p class="text-3 mb-4">{% translate "Приём откликов до" %} <time datetime="{{ vacancy.closes_on|date:'Y-m-d' }}">{{ vacancy.closes_on|date:'d E Y' }}</time> {% translate "включительно." %}</p>{% endif %}
+            <a class="card-link mb-3" href="{{ vacancy.company.get_absolute_url }}">{% translate "О компании" %} <i class="fas fa-arrow-right" aria-hidden="true"></i></a><br>
+            <a class="card-link" href="{% url 'core:career' %}?company={{ vacancy.company.slug|urlencode }}#vacancies">{% translate "Другие вакансии компании" %} <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+    </aside>
+</div>
+{% endblock %}

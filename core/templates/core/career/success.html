@@ -1,0 +1,14 @@
+{% extends 'core/page_layout.html' %}
+{% load i18n %}
+
+{% block page_content %}
+<div class="row justify-content-center"><div class="col-lg-8">
+    <div class="article-panel">
+        <span class="career-icon mb-4" aria-hidden="true"><i class="fas fa-check"></i></span>
+        <h2 class="text-6 font-weight-bold text-transform-none mb-3">{% translate "Спасибо! Ваша заявка принята." %}</h2>
+        <p class="text-4 line-height-7">{% translate "Данные и резюме сохранены для рассмотрения. Для обратной связи используются указанные вами контакты." %}</p>
+        <p class="text-3 line-height-7 mb-4">{% translate "Номер заявки:" %} <strong class="text-color-dark career-reference">{{ career_reference }}</strong></p>
+        <div class="d-flex flex-wrap gap-3"><a class="btn btn-primary" href="{% url 'core:career' %}#vacancies">{% translate "Вернуться к вакансиям" %}</a><a class="btn btn-light" href="{% url 'core:home' %}">{% translate "На главную" %}</a></div>
+    </div>
+</div></div>
+{% endblock %}

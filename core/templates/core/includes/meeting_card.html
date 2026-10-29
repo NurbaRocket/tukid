@@ -1,0 +1,17 @@
+{% load i18n %}
+{% load content %}
+<article class="card content-card meeting-card h-100">
+    <a class="card-media" href="{{ meeting.get_absolute_url }}" aria-label="{{ meeting.i18n.title }}">
+        {% include 'core/includes/home_photo.html' with src=meeting.image_url image='core/images/placeholders/home-about.svg' alt=meeting.i18n.image_alt|default:meeting.i18n.title ratio='ratio-16x9' %}
+    </a>
+    <div class="card-body d-flex flex-column">
+        <div class="card-meta"><time datetime="{{ meeting.date|date:'Y-m-d' }}">{{ meeting.date|date:'d E Y' }}</time>{% include 'core/includes/demo_badge.html' with object=meeting %}</div>
+        <h{{ heading|default:'3' }} class="card-title text-transform-none"><a class="text-color-dark" href="{{ meeting.get_absolute_url }}">{{ meeting.i18n.title }}</a></h{{ heading|default:'3' }}>
+        <p class="card-meta line-height-6"><i class="fas fa-users text-color-primary" aria-hidden="true"></i>{{ meeting.i18n.participants|plain_text|truncatewords:12 }}</p>
+        <div class="meeting-excerpt mb-3">
+            <p><strong>{% translate "Цель:" %}</strong> {{ meeting.i18n.purpose|plain_text|truncatewords:14 }}</p>
+            <p><strong>{% translate "Итоги:" %}</strong> {{ meeting.i18n.outcomes|plain_text|truncatewords:16 }}</p>
+        </div>
+        <a class="card-link mt-auto" href="{{ meeting.get_absolute_url }}">{% translate "О встрече" %} <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+    </div>
+</article>

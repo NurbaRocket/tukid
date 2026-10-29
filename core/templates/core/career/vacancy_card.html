@@ -1,0 +1,22 @@
+{% load i18n %}
+{% load content %}
+<article class="card content-card vacancy-card h-100">
+    <div class="card-body d-flex flex-column">
+        <div class="d-flex align-items-center gap-3 mb-4">
+            <a class="career-company-logo" href="{{ vacancy.company.get_absolute_url }}" aria-label="{% blocktranslate with v0=vacancy.company.i18n.name %}О компании {{ v0 }}{% endblocktranslate %}">
+                {% if vacancy.company.logo %}<img src="{{ vacancy.company.logo.url }}" alt="" width="72" height="48" loading="lazy">{% else %}<i class="fas fa-building" aria-hidden="true"></i>{% endif %}
+            </a>
+            <div><a class="text-3 font-weight-semibold text-color-dark" href="{{ vacancy.company.get_absolute_url }}">{{ vacancy.company.i18n.name }}</a>{% if vacancy.company.is_demo %}<div>{% include 'core/includes/demo_badge.html' with object=vacancy.company %}</div>{% endif %}</div>
+        </div>
+        {% if vacancy.is_demo %}<div class="mb-2">{% include 'core/includes/demo_badge.html' with object=vacancy %}</div>{% endif %}
+        <h3 class="card-title text-transform-none"><a class="text-color-dark" href="{{ vacancy.get_absolute_url }}">{{ vacancy.i18n.title }}</a></h3>
+        {% if vacancy.i18n.salary %}<p class="career-salary mb-3">{{ vacancy.i18n.salary }}</p>{% endif %}
+        <div class="d-flex flex-wrap gap-2 mb-3">
+            <span class="badge bg-light text-dark border">{{ vacancy.get_employment_display }}</span>
+            <span class="badge bg-light text-dark border">{{ vacancy.get_work_mode_display }}</span>
+        </div>
+        {% if vacancy.i18n.location %}<p class="card-meta"><i class="fas fa-location-dot" aria-hidden="true"></i>{{ vacancy.i18n.location }}</p>{% endif %}
+        <p class="card-summary">{{ vacancy.i18n.description|plain_text|truncatewords:22 }}</p>
+        <a class="card-link mt-auto" href="{{ vacancy.get_absolute_url }}">{% translate "Подробнее и откликнуться" %} <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+    </div>
+</article>

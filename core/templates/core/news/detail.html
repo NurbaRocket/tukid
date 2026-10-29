@@ -1,0 +1,19 @@
+{% extends 'core/page_layout.html' %}
+{% load i18n %}
+{% load content %}
+
+{% block page_content %}
+<article class="row article-layout">
+    <div class="col-12">
+        {% include 'core/includes/demo_notice.html' with object=article %}
+        <a class="d-inline-block mb-4" href="{% url 'core:news' %}"><i class="fas fa-arrow-left me-2" aria-hidden="true"></i>{% translate "Все новости" %}</a>
+        <p><time datetime="{{ article.published_at|date:'c' }}">{{ article.published_at|date:'d E Y' }}</time></p>
+        {% if article.image %}<img class="img-fluid article-cover mb-4" src="{{ article.image.url }}" alt="{{ article.i18n.image_alt|default:article.i18n.title }}">{% endif %}
+        {% if article.i18n.summary %}<p class="lead">{{ article.i18n.summary }}</p>{% endif %}
+        <div class="page-prose">{{ article.i18n.body|richtext }}</div>
+        <div class="d-flex flex-wrap gap-2 mt-4">
+            {% for tag in article.tags.all %}<a class="badge bg-light text-dark border" href="{% url 'core:news' %}?tag={{ tag.slug|urlencode }}">{{ tag.i18n.name }}</a>{% endfor %}
+        </div>
+    </div>
+</article>
+{% endblock %}

@@ -1,0 +1,7 @@
+{% load i18n %}
+<div class="{% if wide %}col-12{% else %}col-md-6{% endif %}">
+    <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}{% if field.field.required %} <span class="text-color-primary" aria-hidden="true">*</span>{% endif %}</label>
+    {{ field }}
+    {% if field.help_text %}<div id="id_{{ field.name }}_help" class="form-text text-3">{{ field.help_text }}</div>{% endif %}
+    {% if field.errors %}<div id="id_{{ field.name }}_errors" class="invalid-feedback d-block">{{ field.errors }}</div>{% endif %}
+</div>

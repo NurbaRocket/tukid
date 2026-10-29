@@ -1,0 +1,15 @@
+{% load i18n %}
+{% load content %}
+<article class="card content-card event-card{% if agenda %} agenda-card{% endif %} h-100">
+    <div class="event-date" aria-hidden="true"><strong>{{ event.starts_at|date:'d' }}</strong><span>{{ event.starts_at|date:'M' }}</span></div>
+    <a class="card-media" href="{{ event.get_absolute_url }}" aria-label="{{ event.i18n.title }}">
+        {% include 'core/includes/home_photo.html' with src=event.image_url image='core/images/placeholders/home-event.svg' alt=event.i18n.image_alt|default:event.i18n.title ratio='ratio-16x9' %}
+    </a>
+    <div class="card-body d-flex flex-column">
+        <div class="card-meta"><time datetime="{{ event.starts_at|date:'c' }}">{{ event.starts_at|date:'d E Y, H:i' }}</time>{% include 'core/includes/demo_badge.html' with object=event %}</div>
+        <h{{ heading|default:'3' }} class="card-title text-transform-none"><a class="text-color-dark" href="{{ event.get_absolute_url }}">{{ event.i18n.title }}</a></h{{ heading|default:'3' }}>
+        {% if event.i18n.location %}<p class="card-meta"><i class="fas fa-location-dot" aria-hidden="true"></i>{{ event.i18n.location }}</p>{% endif %}
+        {% if event.i18n.description %}<p class="card-summary">{{ event.i18n.description|plain_text|truncatewords:20 }}</p>{% endif %}
+        <a class="card-link mt-auto" href="{{ event.get_absolute_url }}">{% translate "Подробнее" %} <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+    </div>
+</article>

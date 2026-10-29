@@ -1,0 +1,8 @@
+{% load i18n %}
+<div class="row g-4">
+    {% for article in articles %}
+    <div class="col-md-6">{% include 'core/includes/home_news_card.html' with heading='2' %}</div>
+    {% empty %}
+    <div class="col-12"><p class="mb-0">{% translate "Новости пока не опубликованы." %}</p></div>
+    {% endfor %}
+</div>

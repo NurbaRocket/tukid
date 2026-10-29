@@ -1,0 +1,18 @@
+{% extends 'core/page_layout.html' %}
+{% load i18n %}
+
+{% block page_content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        {% if membership_reference %}
+        <div class="alert alert-success text-4 mb-4" role="status"><i class="fas fa-check-circle me-2" aria-hidden="true"></i>{% translate "Заявка успешно отправлена." %}</div>
+        <p class="text-4 line-height-7">{% translate "Заявка сохранена и ожидает рассмотрения Советом Правления." %}</p>
+        <p class="text-3 line-height-7 mb-4">{% translate "Номер заявки:" %} <strong class="text-color-dark text-break">{{ membership_reference }}</strong></p>
+        {% else %}
+        <p class="text-4 line-height-7 mb-4">{% translate "Подать заявку на членство можно через форму вступления в объединение." %}</p>
+        {% endif %}
+        <a class="btn btn-outline btn-primary font-weight-semibold" href="{% url 'core:home' %}">{% translate "На главную" %}</a>
+        {% if not membership_reference %}<a class="btn btn-primary font-weight-semibold ms-2" href="{% url 'core:membership' %}">{% translate "Заполнить заявку" %}</a>{% endif %}
+    </div>
+</div>
+{% endblock %}

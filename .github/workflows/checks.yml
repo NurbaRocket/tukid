@@ -1,0 +1,87 @@
+name: Project checks
+
+"on":
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_DB: tukid_ci
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: ci-only-password
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d tukid_ci"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    env:
+      DB_NAME: tukid_ci
+      DB_USER: postgres
+      DB_PASSWORD: ci-only-password
+      DB_HOST: 127.0.0.1
+      DB_PORT: "5432"
+      DJANGO_DEBUG: "False"
+      DJANGO_ALLOWED_HOSTS: example.com
+
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: |
+            requirements.txt
+            requirements-dev.txt
+
+      - name: Generate an ephemeral settings key
+        run: |
+          python - <<'PY'
+          import os
+          import secrets
+          with open(os.environ['GITHUB_ENV'], 'a', encoding='utf-8') as stream:
+              stream.write(f'DJANGO_SECRET_KEY={secrets.token_urlsafe(64)}\n')
+          PY
+
+      - name: Install dependencies
+        run: python -m pip install -r requirements-dev.txt pip-audit
+
+      - name: Check dependencies
+        run: python -m pip check
+
+      - name: Check Django and migrations
+        run: |
+          python manage.py check --settings=config.test_postgres_settings
+          python manage.py makemigrations --check --dry-run --settings=config.test_postgres_settings
+
+      - name: Test on SQLite
+        run: python manage.py test core --settings=config.test_settings --noinput
+
+      - name: Test on PostgreSQL
+        run: python manage.py test core --settings=config.test_postgres_settings --noinput
+
+      - name: Check production settings
+        run: python manage.py check --deploy --fail-level WARNING --settings=config.production
+
+      - name: Collect static assets
+        run: python manage.py collectstatic --noinput --ignore=php --ignore='*.php' --settings=config.production
+
+      - name: Audit project dependencies
+        run: python -m pip_audit --requirement requirements-dev.txt --strict

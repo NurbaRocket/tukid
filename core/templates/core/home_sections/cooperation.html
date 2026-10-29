@@ -1,0 +1,37 @@
+{% load i18n %}
+{% load static %}
+<section id="cooperation" class="section position-relative bg-color-grey-100 border-0 m-0 py-5" aria-labelledby="cooperation-heading">
+    <img src="{% static 'core/images/institutions/cooperation-background.svg' %}" alt="" class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover pe-none" aria-hidden="true" loading="lazy">
+    <div class="container position-relative py-lg-4">
+        <div class="row justify-content-center text-center mb-5">
+            <div class="col-lg-11">
+                {% if section.i18n.eyebrow %}<p class="text-color-primary font-weight-bold text-3 text-uppercase mb-2">{{ section.i18n.eyebrow }}</p>{% endif %}
+                <h2 id="cooperation-heading" class="section-heading text-transform-none mb-0">{{ section.i18n.title }}</h2>
+                <div class="divider divider-primary divider-small divider-small-center my-4" aria-hidden="true"><hr class="my-0"></div>
+            </div>
+            {% if section.i18n.description %}<div class="col-lg-9"><p class="text-color-dark text-4 line-height-7 mb-0">{{ section.i18n.description }}</p></div>{% endif %}
+        </div>
+        <div class="row justify-content-center g-4">
+            {% for cooperation in home_cooperation %}
+            <div class="col-md-6 col-lg-4">
+                <article class="featured-box featured-box-primary bg-color-light box-shadow-4 rounded-4 h-100 m-0">
+                    <div class="box-content box-content-border-bottom rounded-4 h-100 d-flex flex-column px-4 pt-5 pb-4">
+                        <div class="feature-box position-absolute top-0 end-0 m-3" aria-hidden="true">
+                            <span class="feature-box-icon bg-color-transparent border border-color-primary top-0"><i class="fas fa-{{ cooperation.icon }} text-color-primary text-4"></i></span>
+                        </div>
+                        <div class="mb-4">
+                            <img src="{{ cooperation.image_url }}" alt="" width="240" height="128" class="object-fit-contain mw-100" loading="lazy" decoding="async">
+                        </div>
+                        <h3 class="text-color-dark text-4-5 font-weight-bold text-transform-none line-height-4 mb-0" data-mh="cooperation-title">{{ cooperation.i18n.title }}</h3>
+                        <div class="divider divider-primary divider-small divider-small-center my-4" aria-hidden="true"><hr class="my-0"></div>
+                        <p class="text-color-dark text-4 line-height-6 mb-0">{{ cooperation.i18n.description }}</p>
+                        {% if cooperation.website %}<div class="mt-auto pt-4"><a class="text-3 font-weight-semibold" href="{{ cooperation.website }}" target="_blank" rel="noopener noreferrer">{% translate "Подробнее" %} <i class="fas fa-arrow-up-right-from-square ms-1" aria-hidden="true"></i><span class="visually-hidden">: {{ cooperation.i18n.title }} {% translate "(откроется в новой вкладке)" %}</span></a></div>{% endif %}
+                    </div>
+                </article>
+            </div>
+            {% empty %}
+            <div class="col text-center"><p class="text-4 mb-0">{% translate "Информация о сотрудничестве появится позже." %}</p></div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

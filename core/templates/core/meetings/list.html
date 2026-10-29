@@ -1,0 +1,13 @@
+{% extends 'core/page_layout.html' %}
+{% load i18n %}
+
+{% block page_content %}
+<div class="row g-4">
+    {% for meeting in page_obj %}
+    <div class="col-md-6 col-lg-4">{% include 'core/includes/meeting_card.html' with heading='2' %}</div>
+    {% empty %}
+    <div class="col"><p class="text-4 mb-0">{% translate "Публикации об официальных встречах скоро появятся." %}</p></div>
+    {% endfor %}
+</div>
+{% include 'core/includes/pagination.html' %}
+{% endblock %}

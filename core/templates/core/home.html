@@ -1,0 +1,15 @@
+{% extends 'core/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{{ site_settings.i18n.name }} {% translate "— предпринимательство, культура, солидарность и дружба" %}{% endblock %}
+
+{% block content %}
+{% for section in home_sections %}
+    {% include section.template_name %}
+{% endfor %}
+{% endblock %}
+
+{% block page_scripts %}
+<script src="{% static 'core/js/views/view.members.js' %}"></script>
+{% endblock %}

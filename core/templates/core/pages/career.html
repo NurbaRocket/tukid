@@ -1,0 +1,103 @@
+{% extends 'core/page_layout.html' %}
+{% load i18n %}
+{% load content %}
+
+{% block page_content %}
+<div class="row gy-4 align-items-center mb-5">
+    <div class="col-lg-8">
+        <p class="section-eyebrow">{% translate "ПРОФЕССИОНАЛЬНЫЕ ВОЗМОЖНОСТИ" %}</p>
+        <h2 class="section-heading text-transform-none">{% translate "Работа в компаниях нашего сообщества" %}</h2>
+        {% if page.image %}<img class="img-fluid article-cover mb-4" src="{{ page.image.url }}" alt="{{ page.i18n.image_alt|default:page.i18n.title }}">{% endif %}
+        <div class="page-prose">{% if page.i18n.body %}{{ page.i18n.body|richtext }}{% else %}<p>{% translate "Знакомьтесь с вакансиями компаний — членов TÜKİD. Выберите подходящую позицию или оставьте общую заявку, указав свой опыт и профессиональные интересы." %}</p>{% endif %}</div>
+    </div>
+    <div class="col-lg-4">
+        <aside class="career-callout">
+            <span class="career-icon" aria-hidden="true"><i class="fas fa-file-lines"></i></span>
+            <h2 class="text-5 font-weight-bold text-transform-none mb-3">{% translate "Не нашли подходящую вакансию?" %}</h2>
+            <p class="mb-4">{% translate "Расскажите о себе и прикрепите резюме — общую заявку можно отправить в любое время." %}</p>
+            <a class="btn btn-primary" href="{% url 'core:career' %}#apply">{% translate "Оставить резюме" %} <i class="fas fa-arrow-down ms-2" aria-hidden="true"></i></a>
+        </aside>
+    </div>
+</div>
+
+<section id="vacancies" aria-labelledby="vacancies-title" class="mb-5">
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+        <h2 id="vacancies-title" class="text-6 font-weight-bold text-transform-none mb-0">{% translate "Открытые вакансии" %}</h2>
+        <p class="mb-0 text-3">{% translate "Найдено вакансий:" %} <strong class="text-color-dark">{{ page_obj.paginator.count }}</strong></p>
+    </div>
+    <form class="row g-3 filter-panel mx-0 mb-4" action="{% url 'core:career' %}#vacancies" method="get" role="search">
+        <div class="col-md-5">
+            <label class="form-label" for="vacancy-query">{% translate "Поиск вакансии" %}</label>
+            <input class="form-control" id="vacancy-query" name="q" type="search" maxlength="200" value="{{ query }}" placeholder="{% translate "Должность, компания или город" %}">
+        </div>
+        <div class="col-md-4">
+            <label class="form-label" for="vacancy-company">{% translate "Компания" %}</label>
+            <select class="form-select" id="vacancy-company" name="company">
+                <option value="">{% translate "Все компании" %}</option>
+                {% for company in companies %}<option value="{{ company.slug }}"{% if selected_company == company.slug %} selected{% endif %}>{{ company.i18n.name }}</option>{% endfor %}
+            </select>
+        </div>
+        <div class="col-md-3 d-flex align-items-end gap-2">
+            <button class="btn btn-primary" type="submit">{% translate "Найти" %}</button>
+            {% if query or selected_company %}<a class="btn btn-light" href="{% url 'core:career' %}#vacancies">{% translate "Сбросить" %}</a>{% endif %}
+        </div>
+    </form>
+    <div class="row g-4">
+        {% for vacancy in page_obj %}<div class="col-md-6 col-xl-4">{% include 'core/career/vacancy_card.html' %}</div>
+        {% empty %}
+        <div class="col-12"><div class="empty-state">
+            <h3 class="text-5 font-weight-bold text-transform-none mb-3">{% if query or selected_company %}{% translate "Вакансии по выбранным условиям не найдены" %}{% else %}{% translate "Открытых вакансий пока нет" %}{% endif %}</h3>
+            <p class="mb-3">{% translate "Вы можете оставить общую заявку: укажите желаемую должность и прикрепите резюме." %}</p>
+            <a class="card-link" href="{% url 'core:career' %}#apply">{% translate "Перейти к форме" %} <i class="fas fa-arrow-down" aria-hidden="true"></i></a>
+        </div></div>
+        {% endfor %}
+    </div>
+    {% include 'core/includes/pagination.html' %}
+</section>
+
+<section id="apply" class="career-apply" aria-labelledby="apply-title">
+    <div class="row gy-4 gx-lg-5">
+        <div class="col-lg-4">
+            <p class="section-eyebrow">{% translate "СЛЕДУЮЩИЙ ШАГ" %}</p>
+            <h2 id="apply-title" class="section-heading text-transform-none mb-4">{% translate "Оставить резюме" %}</h2>
+            <p class="text-4 line-height-7 mb-4">{% translate "Откликнитесь на вакансию или отправьте общую заявку для рассмотрения вашей кандидатуры." %}</p>
+            <ol class="career-steps">
+                <li><strong>{% translate "Расскажите о себе" %}</strong><span>{% translate "Укажите контакты, желаемую должность и опыт работы." %}</span></li>
+                <li><strong>{% translate "Прикрепите резюме" %}</strong><span>{% translate "Подойдёт PDF или DOCX размером до 5 МБ." %}</span></li>
+                <li><strong>{% translate "Оставайтесь на связи" %}</strong><span>{% translate "Для обратной связи используются указанные вами телефон и почта." %}</span></li>
+            </ol>
+        </div>
+        <div class="col-lg-8">
+            <form class="career-form article-panel" action="{% url 'core:career' %}#apply" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.submission_token }}{{ form.website }}
+                <p class="text-3 mb-4">{% translate "Поля со звёздочкой обязательны." %}</p>
+                {% if form.errors %}
+                <div class="alert alert-danger" role="alert">
+                    <p class="mb-2">{% translate "Проверьте отмеченные поля. Перед повторной отправкой прикрепите резюме ещё раз." %}</p>
+                    {{ form.non_field_errors }}{{ form.submission_token.errors }}{{ form.website.errors }}
+                </div>
+                {% endif %}
+                <div class="row g-4">
+                    {% include 'core/career/field.html' with field=form.vacancy wide=True %}
+                    {% include 'core/career/field.html' with field=form.full_name wide=True %}
+                    {% include 'core/career/field.html' with field=form.email %}
+                    {% include 'core/career/field.html' with field=form.phone %}
+                    {% include 'core/career/field.html' with field=form.city %}
+                    {% include 'core/career/field.html' with field=form.desired_position %}
+                    {% include 'core/career/field.html' with field=form.cover_letter wide=True %}
+                    {% include 'core/career/field.html' with field=form.resume wide=True %}
+                    <div class="col-12">
+                        <div class="form-check">
+                            {{ form.consent_accepted }}
+                            <label class="form-check-label text-3 line-height-6" for="{{ form.consent_accepted.id_for_label }}">{{ form.consent_accepted.label }} <span class="text-color-primary" aria-hidden="true">*</span></label>
+                            {% if form.consent_accepted.errors %}<div id="id_consent_accepted_errors" class="invalid-feedback d-block">{{ form.consent_accepted.errors }}</div>{% endif %}
+                        </div>
+                    </div>
+                    <div class="col-12"><button class="btn btn-primary" type="submit">{% translate "Отправить резюме" %} <i class="fas fa-arrow-right ms-2" aria-hidden="true"></i></button></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

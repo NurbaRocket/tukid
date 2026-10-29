@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-labelledby="title">
+  <title id="title">Место для фотографии: Мероприятие TUKID</title>
+  <rect width="1200" height="900" fill="#f1f2f4"/>
+  <rect x="60" y="60" width="1080" height="780" rx="20" fill="none" stroke="#d3d7dd" stroke-width="3" stroke-dasharray="12 12"/>
+  <path d="M538 340h35l18-22h54l18 22h35a14 14 0 0 1 14 14v94a14 14 0 0 1-14 14H538a14 14 0 0 1-14-14v-94a14 14 0 0 1 14-14Z" fill="none" stroke="#929ba7" stroke-width="7"/>
+  <circle cx="618" cy="390" r="33" fill="none" stroke="#929ba7" stroke-width="7"/>
+  <text x="600" y="535" fill="#59616c" font-family="Arial, sans-serif" font-size="38" text-anchor="middle">Место для фотографии</text>
+  <text x="600" y="590" fill="#6c7580" font-family="Arial, sans-serif" font-size="28" text-anchor="middle">Мероприятие TUKID</text>
+</svg>

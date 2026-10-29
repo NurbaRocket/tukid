@@ -1,0 +1,19 @@
+{% extends 'core/page_layout.html' %}
+{% load i18n %}
+{% load content %}
+
+{% block page_content %}
+<nav class="nav nav-pills gap-2 mb-4" aria-label="{% translate "Категории мероприятий" %}">
+    <a class="nav-link{% if event_period == 'all' %} active{% endif %}" href="{% url 'core:events' %}"{% if event_period == 'all' %} aria-current="page"{% endif %}>{% translate "Все мероприятия" %}</a>
+    <a class="nav-link{% if event_period == 'upcoming' %} active{% endif %}" href="{% url 'core:upcoming_events' %}"{% if event_period == 'upcoming' %} aria-current="page"{% endif %}>{% translate "Анонсы" %}</a>
+    <a class="nav-link{% if event_period == 'past' %} active{% endif %}" href="{% url 'core:past_events' %}"{% if event_period == 'past' %} aria-current="page"{% endif %}>{% translate "Прошедшие мероприятия" %}</a>
+</nav>
+<div class="row g-4">
+    {% for event in page_obj %}
+    <div class="col-md-6">{% include 'core/includes/home_event_card.html' with heading='2' %}</div>
+    {% empty %}
+    <div class="col-12"><p class="mb-0">{% translate "Мероприятия в этом разделе пока не опубликованы." %}</p></div>
+    {% endfor %}
+</div>
+{% include 'core/includes/pagination.html' %}
+{% endblock %}

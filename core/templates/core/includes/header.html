@@ -1,0 +1,84 @@
+{% load i18n %}
+{% load static %}
+<header id="header" class="header-effect-shrink" data-plugin-options="{'stickyEnabled': true, 'stickyEffect': 'shrink', 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': false, 'stickyChangeLogo': true, 'stickyStartAt': 120, 'stickyHeaderContainerHeight': 70}">
+				<div class="header-body">
+					{% if site_settings.show_contact_bar %}<div class="header-top header-top-default header-top-small-minheight header-top-simple-border-bottom">
+						<div class="container">
+							<div class="header-row">
+								<nav class="header-nav-top w-100" aria-label="{% translate "Контактные данные" %}">
+									<ul class="nav nav-pills w-100 align-items-center py-1">
+										<li class="nav-item">
+											<a class="text-color-dark" href="mailto:{{ site_settings.email }}"><i class="far fa-envelope text-color-primary me-1" aria-hidden="true"></i> {{ site_settings.email }}</a>
+										</li>
+										<li class="nav-item">
+											<span class="text-color-dark"><i class="fas fa-location-dot text-color-primary me-1" aria-hidden="true"></i> {{ site_settings.i18n.address }}</span>
+										</li>
+										<li class="nav-item ms-lg-auto">
+											<a class="text-color-dark" href="{% if site_settings.whatsapp_url %}{{ site_settings.whatsapp_url }}{% else %}tel:{{ site_settings.phone_link }}{% endif %}" target="_blank" rel="noopener noreferrer" aria-label="{% blocktranslate with v0=site_settings.phone %}Связаться: {{ v0 }}{% endblocktranslate %}"><i class="fab fa-whatsapp text-color-primary me-1" aria-hidden="true"></i> {{ site_settings.phone }}</a>
+										</li>
+									</ul>
+								</nav>
+							</div>
+						</div>
+					</div>
+					{% endif %}<div class="header-container container">
+						<div class="header-row">
+							<div class="header-column">
+								<div class="header-row">
+									<div class="header-logo">
+										<a href="{% url 'core:home' %}">
+											<img alt="{{ site_settings.i18n.name }}" width="110" height="58" data-sticky-width="82" data-sticky-height="40" src="{{ site_settings.header_logo_url }}">
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="header-column justify-content-end">
+								<div class="header-row">
+									<div class="header-nav header-nav-links order-2 order-lg-1">
+										<div class="header-nav-main header-nav-main-square header-nav-main-effect-2 header-nav-main-sub-effect-1">
+											<nav class="collapse" id="primary-navigation" aria-label="{% translate "Главное меню" %}">
+												<ul class="nav nav-pills" id="mainNav">
+    {% for item in site_menu %}
+    <li{% if item.visible_children %} class="dropdown"{% endif %}>
+        {% if item.url %}
+        <a class="dropdown-item{% if item.visible_children %} dropdown-toggle{% endif %}{% if item.active %} active{% endif %}" href="{{ item.url }}"{% if item.visible_children %} aria-haspopup="true"{% endif %}>{{ item.i18n.title }}</a>
+        {% elif item.visible_children %}<a class="dropdown-item dropdown-toggle{% if item.active %} active{% endif %}" href="#" role="button" aria-haspopup="true">{{ item.i18n.title }}</a>
+        {% else %}<span class="dropdown-item disabled" aria-disabled="true">{{ item.i18n.title }}</span>{% endif %}
+        {% if item.visible_children %}
+        <ul class="dropdown-menu">
+            {% for child in item.visible_children %}
+            <li>{% if child.url %}<a class="dropdown-item text-uppercase{% if child.active %} active{% endif %}" href="{{ child.url }}">{{ child.i18n.title }}</a>{% else %}<span class="dropdown-item text-uppercase disabled" aria-disabled="true">{{ child.i18n.title }}</span>{% endif %}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+											</nav>
+										</div>
+										<button class="btn header-btn-collapse-nav" type="button" data-bs-toggle="collapse" data-bs-target="#primary-navigation" aria-controls="primary-navigation" aria-expanded="false" aria-label="{% translate "Открыть меню" %}" data-label-open="{% translate "Открыть меню" %}" data-label-close="{% translate "Закрыть меню" %}">
+											<i class="fas fa-bars" aria-hidden="true"></i>
+										</button>
+									</div>
+									<div class="header-nav-features header-nav-features-no-border header-nav-features-lg-show-border order-1 order-lg-2">
+										{% include 'core/includes/language_switcher.html' %}
+										<div class="header-nav-feature header-nav-features-search d-inline-flex">
+											<a href="#" class="header-nav-features-toggle text-decoration-none" data-focus="headerSearch" aria-label="{% translate "Поиск по компаниям" %}"><i class="fas fa-search header-nav-top-icon"></i></a>
+											<div class="header-nav-features-dropdown" id="headerTopSearchDropdown">
+												<form role="search" action="{% url 'core:members' %}" method="get">
+													<div class="simple-search input-group">
+														<input class="form-control text-1" id="headerSearch" name="q" type="search" value="" placeholder="{% translate "Поиск по компаниям..." %}">
+														<button class="btn" type="submit" aria-label="{% translate "Поиск по компаниям" %}">
+															<i class="fas fa-search header-nav-top-icon"></i>
+														</button>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</header>
