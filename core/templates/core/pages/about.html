@@ -1,2 +1,105 @@
-{% extends 'core/pages/information.html' %}
-{% load i18n %}
+{% extends 'core/base.html' %}
+{% load i18n static content %}
+
+{% block title %}{{ page_title }} — {{ site_settings.i18n.name }}{% endblock %}
+{% block page_styles %}<link rel="stylesheet" href="{% static 'core/css/about.css' %}">{% endblock %}
+
+{% block content %}
+<div class="about-page">
+    <section class="about-hero" aria-labelledby="about-title">
+        <div class="container">
+            <nav class="about-breadcrumb" aria-label="{% translate 'Навигационная цепочка' %}">
+                <a href="{% url 'core:home' %}">{% translate "Главная" %}</a><span aria-hidden="true">/</span><span aria-current="page">{{ page_title }}</span>
+            </nav>
+            <div class="about-hero-grid">
+                <div class="about-hero-copy">
+                    <p class="section-eyebrow">TÜKİD · {% translate "О нас" %}</p>
+                    <h1 id="about-title">{% translate "Объединяем людей." %}<br><span>{% translate "Открываем возможности." %}</span></h1>
+                    <p class="about-lead">{% translate "Деловое сообщество Турции и Кыргызстана. Вместе развиваем предпринимательство и создаём прочные связи между нашими странами." %}</p>
+                    <div class="about-actions">
+                        <a class="btn btn-primary" href="{% url 'core:membership' %}">{% translate "Стать частью объединения" %} <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+                        <a class="about-text-link" href="#about-history">{% translate "Наша история" %} <i class="fas fa-arrow-down" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="about-countries"><span>TR</span>{% translate "Турция" %}<i class="fas fa-link" aria-hidden="true"></i><span>KG</span>{% translate "Кыргызстан" %}</div>
+                </div>
+                <figure class="about-hero-photo">
+                    {% if page.image %}
+                    <img src="{{ page.image.url }}" alt="{{ page.i18n.image_alt|default:page.i18n.title }}" width="1000" height="1100" fetchpriority="high">
+                    {% else %}
+                    <img src="{% static 'core/images/about/community.jpg' %}" alt="{% translate 'Демо: участники деловой встречи за общим столом' %}" width="1000" height="1100" fetchpriority="high">
+                    <span class="about-photo-label">{% translate "Демо-фото" %}</span>
+                    {% endif %}
+                    <figcaption class="about-founded"><span class="about-founded-icon"><i class="fas fa-seedling" aria-hidden="true"></i></span><span><small>{% translate "Вместе с" %}</small><time datetime="2020-12-02">{% translate "2 декабря 2020" %}</time></span></figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-numbers" aria-label="{% translate 'Объединение в цифрах' %}">
+        <div class="container">
+            <dl class="about-stats">
+                <div><dt>70<span>+</span></dt><dd>{% translate "деловых людей и компаний" %}</dd></div>
+                <div><dt>2020</dt><dd>{% translate "год основания объединения" %}</dd></div>
+                <div><dt>2</dt><dd>{% translate "страны — одно сообщество" %}</dd></div>
+                <div><dt>5</dt><dd>{% translate "ключевых направлений поддержки" %}</dd></div>
+            </dl>
+        </div>
+    </section>
+
+    <section class="about-section" aria-labelledby="about-story-title">
+        <div class="container about-story-grid">
+            <div>
+                <p class="section-eyebrow">{% translate "Знакомьтесь, TÜKİD" %}</p>
+                <h2 id="about-story-title">{% translate "Партнёрство, которое помогает расти" %}</h2>
+                <div class="about-story-copy">{{ page.i18n.body|richtext }}</div>
+            </div>
+            <aside class="about-story-aside">
+                <figure class="about-office-photo">
+                    <img src="{% static 'core/images/about/workspace.jpg' %}" alt="{% translate 'Демо: светлое пространство для совместной работы' %}" width="800" height="1000" loading="lazy">
+                    <span class="about-photo-label">{% translate "Демо-фото" %}</span>
+                    <figcaption>{% translate "Пространство для диалога и новых идей" %}</figcaption>
+                </figure>
+                <div class="about-note"><i class="fas fa-people-arrows" aria-hidden="true"></i><p>{% translate "За каждым партнёрством — люди. За каждым общим делом — новые возможности." %}</p></div>
+            </aside>
+        </div>
+    </section>
+
+    <section class="about-section about-history" id="about-history" aria-labelledby="about-history-title">
+        <div class="container">
+            <div class="about-section-head"><div><p class="section-eyebrow">{% translate "Наша история" %}</p><h2 id="about-history-title">{% translate "От общей идеи — к сильному сообществу" %}</h2></div><p>{% translate "Объединяем опыт, выстраиваем диалог и движемся вперёд вместе." %}</p></div>
+            <ol class="about-timeline">
+                <li><span class="about-timeline-step" aria-hidden="true">01</span><p class="about-timeline-date"><time datetime="2020-12-02">{% translate "2 декабря 2020" %}</time></p><h3>{% translate "Начало общего пути" %}</h3><p>{% translate "Основание ассоциации для содействия экономическому, социальному и культурному развитию Кыргызстана." %}</p></li>
+                <li><span class="about-timeline-step" aria-hidden="true">02</span><p class="about-timeline-date">{% translate "Сегодня" %}</p><h3>{% translate "Более 70 участников" %}</h3><p>{% translate "Турецкие и кыргызские деловые люди и компании из разных секторов экономики — в одном объединении." %}</p></li>
+                <li><span class="about-timeline-step" aria-hidden="true">03</span><p class="about-timeline-date">{% translate "Наш ориентир" %}</p><h3>{% translate "Больше возможностей для бизнеса" %}</h3><p>{% translate "Развитие предпринимательских компетенций, защита интересов участников и укрепление делового сотрудничества." %}</p></li>
+            </ol>
+        </div>
+    </section>
+
+    <section class="about-section" aria-labelledby="about-directions-title">
+        <div class="container">
+            <p class="section-eyebrow">{% translate "Что нас объединяет" %}</p><h2 id="about-directions-title">{% translate "Поддержка бизнеса в ключевых направлениях" %}</h2>
+            <div class="about-directions">
+                <div><i class="fas fa-globe" aria-hidden="true"></i><h3>{% translate "Внешняя торговля" %}</h3></div>
+                <div><i class="fas fa-chart-line" aria-hidden="true"></i><h3>{% translate "Инвестиции" %}</h3></div>
+                <div><i class="fas fa-handshake" aria-hidden="true"></i><h3>{% translate "Услуги" %}</h3></div>
+                <div><i class="fas fa-file-signature" aria-hidden="true"></i><h3>{% translate "Заключение контрактов" %}</h3></div>
+                <div><i class="fas fa-truck" aria-hidden="true"></i><h3>{% translate "Логистика" %}</h3></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section about-gallery-section" aria-labelledby="about-gallery-title">
+        <div class="container">
+            <div class="about-section-head"><div><p class="section-eyebrow">{% translate "Люди и встречи" %}</p><h2 id="about-gallery-title">{% translate "Вместе — больше, чем бизнес" %}</h2></div><a class="about-text-link" href="{% url 'core:members' %}">{% translate "Наши члены" %} <i class="fas fa-arrow-right" aria-hidden="true"></i></a></div>
+            <div class="about-gallery">
+                <figure><img src="{% static 'core/images/about/dialogue.jpg' %}" alt="{% translate 'Демо: обсуждение идей на деловой встрече' %}" width="1200" height="800" loading="lazy"><span class="about-photo-label">{% translate "Демо-фото" %}</span><figcaption><span>01 /</span> {% translate "Деловой диалог" %}</figcaption></figure>
+                <figure><img src="{% static 'core/images/about/team.jpg' %}" alt="{% translate 'Демо: команда предпринимателей за работой' %}" width="900" height="1000" loading="lazy"><span class="about-photo-label">{% translate "Демо-фото" %}</span><figcaption><span>02 /</span> {% translate "Сила сообщества" %}</figcaption></figure>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section" aria-labelledby="about-join-title">
+        <div class="container"><div class="about-join"><div><p class="section-eyebrow">{% translate "Следующая глава — вместе с вами" %}</p><h2 id="about-join-title">{% translate "Станьте частью нашего сообщества" %}</h2><p>{% translate "Знакомьтесь с участниками и открывайте новые возможности для сотрудничества." %}</p></div><a class="btn btn-primary" href="{% url 'core:membership' %}">{% translate "Присоединиться к TÜKİD" %} <i class="fas fa-arrow-right" aria-hidden="true"></i></a></div></div>
+    </section>
+</div>
+{% endblock %}

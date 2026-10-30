@@ -6,7 +6,7 @@ from django.core.exceptions import ValidationError
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
 from django.utils.translation import gettext as _
-from .localization import content_search
+from .localization import content_search, normalize_search_query
 from django.views.decorators.cache import never_cache
 from django.views.decorators.debug import sensitive_post_parameters
 from django.views.decorators.http import require_GET, require_http_methods
@@ -18,6 +18,7 @@ from .membership_constants import MEMBERSHIP_DECLARATION
 from .membership_pdf import MembershipPDFError
 from .membership_service import submit_membership_application
 from .site_cache import get_site_navigation
+from .search import search_site
 
 from .models import (
     ActivitySector, BoardMember, Event, GalleryPhoto, HomeDirection, HomeSection,
@@ -25,6 +26,16 @@ from .models import (
 )
 
 logger = logging.getLogger(__name__)
+
+
+@require_GET
+def search(request):
+    query = normalize_search_query(request.GET.get('q', ''))
+    return render(request, 'core/search.html', {
+        'page_title': _('Поиск по сайту'), 'query': query,
+        'page_obj': search_site(query, request.GET.get('page'),
+            unpublished_pages=get_site_navigation(request)['unpublished']),
+    })
 
 
 @sensitive_post_parameters()
@@ -101,7 +112,7 @@ def information_page(request, slug):
 def member_list(request):
     members = Member.objects.filter(is_published=True).prefetch_related('sectors',
         Prefetch('vacancies', queryset=Vacancy.objects.open().only('id', 'company_id'), to_attr='open_vacancies'))
-    query = request.GET.get('q', '').strip()[:200]
+    query = normalize_search_query(request.GET.get('q', ''))
     sector = request.GET.get('sector', '').strip()
     if query:
         members = members.filter(content_search(('name', 'description', 'city', 'sectors__name'), query)).distinct()
@@ -133,10 +144,12 @@ def career(request):
     page = get_object_or_404(Page, slug='career', is_published=True)
     vacancies = Vacancy.objects.open().select_related('company')
     companies = Member.objects.filter(pk__in=vacancies.values('company_id')).order_by('name')
-    query = request.GET.get('q', '').strip()[:200]
+    query = normalize_search_query(request.GET.get('q', ''))
     selected_company = request.GET.get('company', '').strip()[:180]
     if query:
-        vacancies = vacancies.filter(content_search(('title', 'company__name', 'location'), query))
+        vacancies = vacancies.filter(content_search((
+            'title', 'company__name', 'location', 'description', 'requirements', 'conditions',
+        ), query))
     if selected_company:
         vacancies = vacancies.filter(company__slug=selected_company)
     initial = {'submission_token': new_career_submission_token()}

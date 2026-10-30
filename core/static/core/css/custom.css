@@ -1,4 +1,7 @@
 :root {
+    --site-font: "Noto Sans", Arial, sans-serif;
+    --bs-font-sans-serif: var(--site-font);
+    --bs-body-font-family: var(--site-font);
     --primary-inverse: #fff;
     --site-ink: #182230;
     --site-muted: #637083;
@@ -12,7 +15,7 @@
 
 body.tukid-site {
     color: var(--site-muted);
-    font: 400 15px/1.75 "Manrope", Arial, sans-serif;
+    font: 400 15px/1.75 var(--site-font);
     font-optical-sizing: auto;
 }
 .tukid-site .body { background: #fff; }
@@ -23,6 +26,9 @@ body.tukid-site {
     overflow-wrap: anywhere;
 }
 .tukid-site p { color: inherit; }
+.tukid-site input, .tukid-site select, .tukid-site textarea, .tukid-site button {
+    font-family: var(--site-font);
+}
 .tukid-site a { color: var(--site-action); text-underline-offset: 4px; }
 .tukid-site a:focus-visible, .tukid-site button:focus-visible, .tukid-site input:focus-visible, .tukid-site select:focus-visible, .tukid-site textarea:focus-visible {
     outline: 3px solid var(--primary) !important;
@@ -52,6 +58,9 @@ body.tukid-site {
 .tukid-site .section-intro { max-width: 660px; margin-top: 16px; font-size: 17px; }
 .tukid-site .section-head { margin-bottom: 32px; }
 .tukid-site .empty-state { margin-inline: 0; padding: 28px; border: 1px solid var(--site-edge); border-radius: var(--site-radius); background: #fff; color: var(--site-muted); box-shadow: var(--site-shadow); }
+.tukid-site .search-query { flex: 1 1 220px; width: auto; min-width: 0; }
+.tukid-site .search-result { padding-block: 24px; border-bottom: 1px solid var(--site-edge); }
+.tukid-site .search-result:first-child { padding-top: 0; }
 .tukid-site .btn {
     border-radius: 11px; font-family: inherit; font-weight: 700;
     white-space: normal; line-height: 1.45; padding: 13px 22px;
@@ -93,7 +102,7 @@ body.tukid-site {
 .tukid-site #header .header-nav-main nav > ul > li.dropdown .dropdown-menu li a:hover { background: #fff2f1; color: var(--site-action); }
 .tukid-site #header .header-nav-features-dropdown { border: 1px solid var(--site-edge); border-radius: 14px; box-shadow: var(--site-shadow-raised); }
 .tukid-site .language-switcher { display: inline-flex; align-items: center; gap: 2px; margin: 0 12px 0 0; padding: 3px; border: 1px solid var(--site-edge); border-radius: 10px; background: #f7f8fa; }
-.tukid-site .language-switcher button { border: 0; border-radius: 7px; background: transparent; color: var(--site-ink); min-width: 29px; padding: 6px; font: 750 11px/1.2 "Manrope", sans-serif; }
+.tukid-site .language-switcher button { border: 0; border-radius: 7px; background: transparent; color: var(--site-ink); min-width: 29px; padding: 6px; font: 750 11px/1.2 var(--site-font); }
 .tukid-site .language-switcher button:hover { background: #fff0ee; color: var(--site-action); }
 .tukid-site .language-switcher button.is-active { background: var(--site-action); color: #fff; opacity: 1; cursor: default; }
 .tukid-site .hero-section { position: relative; isolation: isolate; background: radial-gradient(ellipse at 85% 22%, #fff0ee 0, transparent 44%), linear-gradient(135deg, #fff, #fafbfe); overflow: hidden; }

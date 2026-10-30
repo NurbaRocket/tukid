@@ -883,3 +883,199 @@ msgstr "?ok fazla istek g?nderildi. Biraz sonra tekrar deneyin."
 
 msgid "???? ?????? ?????? ???? ?? ?????? 5 ??."
 msgstr "?zge?mi? dosyas? 5 MB boyutunu a?mamal?d?r."
+
+msgid "Поиск по сайту"
+msgstr "Sitede ara"
+
+msgid "Поиск по сайту..."
+msgstr "Sitede ara..."
+
+msgid "Компании, новости, мероприятия, встречи, вакансии и страницы сайта."
+msgstr ""
+"Şirketler, haberler, etkinlikler, toplantılar, iş ilanları ve site "
+"sayfaları."
+
+msgid "Найдено:"
+msgstr "Bulunan sonuç:"
+
+msgid "По вашему запросу ничего не найдено."
+msgstr "Aramanızla eşleşen sonuç bulunamadı."
+
+msgid "Проверьте написание или попробуйте другие слова."
+msgstr "Yazımı kontrol edin veya farklı kelimeler deneyin."
+
+msgid "Введите слово или несколько слов для поиска."
+msgstr "Aramak için bir veya birkaç kelime girin."
+
+msgid "Информация"
+msgstr "Bilgi"
+
+msgid "О нас"
+msgstr "Hakkımızda"
+
+msgid "Навигационная цепочка"
+msgstr "Gezinti yolu"
+
+msgid "Объединяем людей."
+msgstr "İnsanları bir araya getiriyoruz."
+
+msgid "Открываем возможности."
+msgstr "Fırsatlar sunuyoruz."
+
+msgid ""
+"Деловое сообщество Турции и Кыргызстана. Вместе развиваем "
+"предпринимательство и создаём прочные связи между нашими странами."
+msgstr ""
+"Türkiye ve Kırgızistan iş dünyası. Birlikte girişimciliği geliştiriyor, "
+"ülkelerimiz arasında güçlü bağlar kuruyoruz."
+
+msgid "Стать частью объединения"
+msgstr "Birliğe katılın"
+
+msgid "Наша история"
+msgstr "Tarihimiz"
+
+msgid "Турция"
+msgstr "Türkiye"
+
+msgid "Кыргызстан"
+msgstr "Kırgızistan"
+
+msgid "Демо: участники деловой встречи за общим столом"
+msgstr "Demo: bir masa etrafında iş toplantısı katılımcıları"
+
+msgid "Демо-фото"
+msgstr "Demo fotoğraf"
+
+msgid "Вместе с"
+msgstr "Birlikte, başlangıç:"
+
+msgid "2 декабря 2020"
+msgstr "2 Aralık 2020"
+
+msgid "Объединение в цифрах"
+msgstr "Rakamlarla birlik"
+
+msgid "деловых людей и компаний"
+msgstr "iş insanı ve şirket"
+
+msgid "год основания объединения"
+msgstr "birliğin kuruluş yılı"
+
+msgid "страны — одно сообщество"
+msgstr "ülke — tek topluluk"
+
+msgid "ключевых направлений поддержки"
+msgstr "temel destek alanı"
+
+msgid "Знакомьтесь, TÜKİD"
+msgstr "TÜKİD ile tanışın"
+
+msgid "Партнёрство, которое помогает расти"
+msgstr "Büyümeyi destekleyen ortaklık"
+
+msgid "Демо: светлое пространство для совместной работы"
+msgstr "Demo: birlikte çalışmak için aydınlık bir alan"
+
+msgid "Пространство для диалога и новых идей"
+msgstr "Diyalog ve yeni fikirler için bir alan"
+
+msgid ""
+"За каждым партнёрством — люди. За каждым общим делом — новые возможности."
+msgstr ""
+"Her ortaklığın arkasında insanlar, her ortak çalışmanın arkasında yeni "
+"fırsatlar vardır."
+
+msgid "От общей идеи — к сильному сообществу"
+msgstr "Ortak bir fikirden güçlü bir topluluğa"
+
+msgid "Объединяем опыт, выстраиваем диалог и движемся вперёд вместе."
+msgstr "Deneyimleri birleştiriyor, diyalog kuruyor ve birlikte ilerliyoruz."
+
+msgid "Начало общего пути"
+msgstr "Ortak yolculuğun başlangıcı"
+
+msgid ""
+"Основание ассоциации для содействия экономическому, социальному и "
+"культурному развитию Кыргызстана."
+msgstr ""
+"Kırgızistan'ın ekonomik, sosyal ve kültürel gelişimine katkı sağlamak "
+"amacıyla derneğin kuruluşu."
+
+msgid "Сегодня"
+msgstr "Bugün"
+
+msgid "Более 70 участников"
+msgstr "70'ten fazla üye"
+
+msgid ""
+"Турецкие и кыргызские деловые люди и компании из разных секторов экономики —"
+" в одном объединении."
+msgstr ""
+"Ekonominin farklı sektörlerinden Türk ve Kırgız iş insanları ve şirketler "
+"tek bir çatı altında."
+
+msgid "Наш ориентир"
+msgstr "Hedefimiz"
+
+msgid "Больше возможностей для бизнеса"
+msgstr "İş dünyası için daha fazla fırsat"
+
+msgid ""
+"Развитие предпринимательских компетенций, защита интересов участников и "
+"укрепление делового сотрудничества."
+msgstr ""
+"Girişimcilik yetkinliklerinin geliştirilmesi, üyelerin çıkarlarının "
+"korunması ve iş birliğinin güçlendirilmesi."
+
+msgid "Что нас объединяет"
+msgstr "Bizi birleştiren değerler"
+
+msgid "Поддержка бизнеса в ключевых направлениях"
+msgstr "Temel alanlarda iş dünyasına destek"
+
+msgid "Внешняя торговля"
+msgstr "Dış ticaret"
+
+msgid "Инвестиции"
+msgstr "Yatırımlar"
+
+msgid "Услуги"
+msgstr "Hizmetler"
+
+msgid "Заключение контрактов"
+msgstr "Sözleşme yapma"
+
+msgid "Логистика"
+msgstr "Lojistik"
+
+msgid "Люди и встречи"
+msgstr "İnsanlar ve buluşmalar"
+
+msgid "Вместе — больше, чем бизнес"
+msgstr "Birlikte, iş dünyasının ötesinde"
+
+msgid "Демо: обсуждение идей на деловой встрече"
+msgstr "Demo: iş toplantısında fikir alışverişi"
+
+msgid "Деловой диалог"
+msgstr "İş diyaloğu"
+
+msgid "Демо: команда предпринимателей за работой"
+msgstr "Demo: çalışan girişimciler ekibi"
+
+msgid "Сила сообщества"
+msgstr "Topluluğun gücü"
+
+msgid "Следующая глава — вместе с вами"
+msgstr "Bir sonraki bölüm sizinle"
+
+msgid "Станьте частью нашего сообщества"
+msgstr "Topluluğumuza katılın"
+
+msgid ""
+"Знакомьтесь с участниками и открывайте новые возможности для сотрудничества."
+msgstr "Üyelerimizle tanışın ve yeni iş birliği fırsatlarını keşfedin."
+
+msgid "Присоединиться к TÜKİD"
+msgstr "TÜKİD'e katılın"

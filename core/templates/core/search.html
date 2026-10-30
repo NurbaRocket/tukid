@@ -1,0 +1,34 @@
+{% extends 'core/page_layout.html' %}
+{% load i18n content %}
+
+{% block page_content %}
+<form class="filter-panel mb-4" role="search" action="{% url 'core:search' %}" method="get">
+    <label class="form-label" for="site-query">{% translate "Поиск по сайту" %}</label>
+    <div class="d-flex flex-wrap gap-2">
+        <input class="form-control search-query" id="site-query" name="q" type="search" maxlength="200" value="{{ query }}" placeholder="{% translate 'Поиск по сайту...' %}">
+        <button class="btn btn-primary" type="submit">{% translate "Найти" %}</button>
+        {% if query %}<a class="btn btn-outline-secondary" href="{% url 'core:search' %}">{% translate "Сбросить" %}</a>{% endif %}
+    </div>
+    <p class="text-2 mb-0 mt-3">{% translate "Компании, новости, мероприятия, встречи, вакансии и страницы сайта." %}</p>
+</form>
+{% if query %}
+    <p role="status">{% translate "Найдено:" %} {{ page_obj.paginator.count }}</p>
+    <div class="search-results">
+        {% for result in page_obj %}
+        <article class="search-result">
+            <p class="card-meta mb-2">{{ result.section }}</p>
+            <h2 class="card-title"><a href="{{ result.url }}">{{ result.title }}</a></h2>
+            {% if result.summary %}<p class="mb-0">{{ result.summary|plain_text|truncatewords:40 }}</p>{% endif %}
+        </article>
+        {% empty %}
+        <div class="empty-state">
+            <p class="mb-2">{% translate "По вашему запросу ничего не найдено." %}</p>
+            <p class="mb-0">{% translate "Проверьте написание или попробуйте другие слова." %}</p>
+        </div>
+        {% endfor %}
+    </div>
+    {% include 'core/includes/pagination.html' %}
+{% else %}
+    <p class="empty-state">{% translate "Введите слово или несколько слов для поиска." %}</p>
+{% endif %}
+{% endblock %}

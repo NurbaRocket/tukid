@@ -1,4 +1,6 @@
 from copy import deepcopy
+import re
+import unicodedata
 
 from django.db import models
 from django.db.models import Q
@@ -52,15 +54,29 @@ def localized(value, field, language=None):
     return value.localized(field, language) if isinstance(value, TranslatedContent) else getattr(value, field, '')
 
 
+def normalize_search_query(query):
+    # Bound both the displayed query and the number of database conditions.
+    query = unicodedata.normalize('NFC', query)[:200]
+    return ' '.join(query.split()[:12])
+
+
 def content_search(fields, query):
     result = Q()
     language = (get_language() or 'ru').split('-')[0]
-    for field in fields:
-        result |= Q(**{f'{field}__icontains': query})
-        if language in {'ky', 'tr'}:
-            parts = field.split('__')
-            path = '__'.join([*parts[:-1], 'translations', language, parts[-1], 'icontains'])
-            result |= Q(**{path: query})
+    for term in normalize_search_query(query).split():
+        matches = Q()
+        # Escape user input: punctuation is literal, never a regex operator.
+        # iregex also handles Cyrillic case on SQLite, unlike its LIKE operator.
+        # PostgreSQL's case mapping depends on its locale. Treat the Turkish
+        # dotted and dotless I explicitly so all supported databases agree.
+        pattern = ''.join('[iIıİ]' if char in 'iIıİ' else re.escape(char) for char in term)
+        for field in fields:
+            matches |= Q(**{f'{field}__iregex': pattern})
+            if language in {'ky', 'tr'}:
+                parts = field.split('__')
+                path = '__'.join([*parts[:-1], 'translations', language, parts[-1], 'iregex'])
+                matches |= Q(**{path: pattern})
+        result &= matches
     return result
 
 

@@ -1,0 +1,141 @@
+.tukid-site .about-page { --about-space: clamp(56px, 7vw, 100px); }
+.about-page .about-section { padding-block: var(--about-space); }
+.about-page h2 { max-width: 740px; margin: 0 0 28px; font-size: clamp(28px, 3vw, 40px); font-weight: 800; line-height: 1.25; text-transform: none; }
+.about-page h3 { text-transform: none; }
+.about-page figure { margin: 0; }
+.about-page img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.about-page .about-hero { padding-bottom: 70px; background: #f7f8fa; }
+.about-page .about-breadcrumb { display: flex; flex-wrap: wrap; gap: 12px; padding-block: 24px 38px; font-size: 12px; }
+.about-page .about-breadcrumb a { color: var(--site-muted); }
+.about-page .about-breadcrumb [aria-current] { color: var(--site-ink); }
+.about-page .about-hero-grid { display: grid; grid-template-columns: 1.08fr 1fr; align-items: center; gap: 58px; }
+.about-page .about-hero-copy { padding-block: 20px; }
+.about-page h1 { margin: 0 0 26px; font-size: clamp(35px, 3.7vw, 52px); line-height: 1.17; font-weight: 800; letter-spacing: -.05em; }
+.about-page h1 span { color: var(--site-action); }
+.about-page .about-lead { max-width: 510px; margin-bottom: 30px; font-size: 17px; line-height: 1.8; }
+.about-page .about-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 20px 24px; }
+.about-page .about-actions .btn { font-size: 14px; }
+.about-page .btn i { margin-left: 14px; font-size: 12px; }
+.about-page .about-text-link { display: inline-flex; align-items: center; gap: 12px; color: var(--site-ink); font-size: 14px; font-weight: 700; }
+.about-page .about-text-link:hover { color: var(--site-action); }
+.about-page .about-text-link i { color: var(--site-action); font-size: 12px; }
+.about-page .about-countries { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-top: 40px; color: var(--site-ink); font-size: 12px; font-weight: 600; }
+.about-page .about-countries span { display: grid; place-items: center; width: 30px; height: 30px; border: 1px solid #e7d7d6; border-radius: 50%; color: var(--site-action); background: #fff; font-size: 10px; font-weight: 800; }
+.about-page .about-countries i { margin-inline: 8px; color: #9ca5b2; }
+.about-page .about-hero-photo { position: relative; height: 510px; margin-right: 15px; }
+.about-page .about-hero-photo::before { content: ""; position: absolute; inset: 18px -15px -15px 18px; border: 1px solid #ddc4c3; border-radius: 6px 80px 6px 6px; }
+.about-page .about-hero-photo > img { position: relative; border-radius: 6px 80px 6px 6px; object-position: 44% center; }
+.about-page .about-photo-label { position: absolute; top: 16px; left: 16px; padding: 4px 9px; border-radius: 5px; background: #fff; color: #455368; font-size: 10px; font-weight: 650; line-height: 1.5; }
+.about-page .about-founded { position: absolute; right: 24px; bottom: 24px; left: 24px; display: flex; align-items: center; gap: 16px; padding: 20px; background: #fff; border-radius: 10px; box-shadow: var(--site-shadow); }
+.about-page .about-founded-icon { display: grid; place-items: center; flex: 0 0 46px; height: 46px; border-radius: 50%; background: #fff0ee; color: var(--site-action); font-size: 22px; }
+.about-page .about-founded small { display: block; font-size: 12px; }
+.about-page .about-founded time { display: block; color: var(--site-ink); font-size: 20px; font-weight: 750; line-height: 1.5; }
+.about-page .about-numbers { background: #182230; color: #fff; }
+.about-page .about-stats { display: grid; grid-template-columns: repeat(4, 1fr); margin: 0; padding-block: 36px; }
+.about-page .about-stats > div { padding-inline: 30px; border-left: 1px solid #ffffff26; }
+.about-page .about-stats > div:first-child { padding-left: 0; border: 0; }
+.about-page .about-stats dt { margin-bottom: 8px; font-size: clamp(36px, 4vw, 50px); font-weight: 750; line-height: 1.2; letter-spacing: -.05em; }
+.about-page .about-stats dt span { color: #ffaaa5; }
+.about-page .about-stats dd { max-width: 185px; margin: 0; color: #c7cfdb; font-size: 13px; line-height: 1.6; }
+.about-page .about-story-grid { display: grid; grid-template-columns: 1.65fr 1fr; gap: 80px; align-items: start; }
+.about-page .about-story-copy { font-size: 16px; line-height: 1.95; overflow-wrap: anywhere; }
+.about-page .about-story-copy p { margin: 0 0 20px; }
+.about-page .about-story-copy p:first-child { color: var(--site-ink); font-size: 18px; line-height: 1.85; }
+.about-page .about-story-copy p:last-child { margin-bottom: 0; }
+.about-page .about-story-aside { padding-top: 48px; }
+.about-page .about-office-photo { position: relative; height: 420px; overflow: hidden; border-radius: 6px; }
+.about-page .about-office-photo::after, .about-page .about-gallery figure::after { content: ""; position: absolute; inset: 40% 0 0; background: linear-gradient(transparent, #0b1524c9); pointer-events: none; }
+.about-page .about-office-photo figcaption { position: absolute; z-index: 1; bottom: 28px; left: 28px; right: 28px; color: #fff; font-size: 21px; font-weight: 650; line-height: 1.45; }
+.about-page .about-note { display: flex; gap: 16px; align-items: start; margin-top: 28px; padding: 24px; border-left: 2px solid var(--site-action); background: #faf4f3; }
+.about-page .about-note i { padding-top: 5px; color: var(--site-action); font-size: 22px; }
+.about-page .about-note p { margin: 0; color: var(--site-ink); font-size: 15px; line-height: 1.8; }
+.about-page .about-history { background: #f5f7fa; scroll-margin-top: 110px; }
+.about-page .about-section-head { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 48px; }
+.about-page .about-section-head h2 { max-width: 630px; margin-bottom: 0; }
+.about-page .about-section-head > p { max-width: 290px; margin: 0; font-size: 15px; }
+.about-page .about-timeline { display: grid; grid-template-columns: repeat(3, 1fr); padding: 0; margin: 0; list-style: none; }
+.about-page .about-timeline li { position: relative; padding: 0 36px 0 0; }
+.about-page .about-timeline li::before { content: ""; position: absolute; top: 24px; left: 0; right: 0; height: 1px; background: #d8dfe8; }
+.about-page .about-timeline li:last-child::before { background: linear-gradient(to right, #d8dfe8, transparent); }
+.about-page .about-timeline-step { position: relative; display: grid; place-items: center; width: 50px; height: 50px; margin-bottom: 28px; border: 1px solid #d8dfe8; border-radius: 50%; background: #f5f7fa; color: var(--site-action); font-size: 13px; font-weight: 800; }
+.about-page .about-timeline li:first-child .about-timeline-step { background: var(--site-action); border-color: var(--site-action); color: #fff; }
+.about-page .about-timeline .about-timeline-date { margin-bottom: 12px; color: var(--site-action); font-size: 12px; font-weight: 750; letter-spacing: .035em; text-transform: uppercase; }
+.about-page .about-timeline h3 { margin-bottom: 14px; font-size: 21px; line-height: 1.45; font-weight: 750; }
+.about-page .about-timeline li > p:last-child { margin: 0; font-size: 14px; line-height: 1.85; }
+.about-page .about-directions { display: grid; grid-template-columns: repeat(5, 1fr); margin-top: 40px; border: 1px solid var(--site-edge); border-radius: 6px; }
+.about-page .about-directions > div { padding: 30px 22px; border-left: 1px solid var(--site-edge); }
+.about-page .about-directions > div:first-child { border-left: 0; }
+.about-page .about-directions i { display: block; margin-bottom: 24px; color: var(--site-action); font-size: 26px; }
+.about-page .about-directions h3 { margin: 0; font-size: 16px; line-height: 1.5; font-weight: 700; }
+.about-page .about-gallery-section { padding-top: 0; }
+.about-page .about-gallery { display: grid; grid-template-columns: 1.45fr 1fr; gap: 24px; }
+.about-page .about-gallery figure { position: relative; height: 380px; overflow: hidden; border-radius: 6px; }
+.about-page .about-gallery figcaption { position: absolute; z-index: 1; bottom: 24px; left: 28px; right: 24px; color: #fff; font-size: 21px; font-weight: 650; }
+.about-page .about-gallery figcaption span { margin-right: 12px; color: #ffc0bb; font-size: 12px; }
+.about-page .about-gallery-section + .about-section { padding-top: 0; }
+.about-page .about-join { display: flex; align-items: center; justify-content: space-between; gap: 32px; padding: 48px; border-radius: 6px; background: #f7efee; border-top: 3px solid var(--site-action); }
+.about-page .about-join h2 { max-width: 610px; margin-bottom: 16px; font-size: clamp(26px, 2.7vw, 34px); }
+.about-page .about-join p:last-child { max-width: 550px; margin: 0; font-size: 15px; }
+.about-page .about-join > .btn { flex-shrink: 0; font-size: 14px; }
+@media (max-width: 1199px) {
+    .about-page .about-hero-grid { gap: 32px; }
+    .about-page .about-story-grid { gap: 40px; }
+    .about-page .about-hero-photo { height: 490px; }
+    .about-page .about-join { padding: 36px; }
+}
+@media (max-width: 991px) {
+    .about-page .about-hero-grid { grid-template-columns: 1fr; gap: 36px; }
+    .about-page .about-hero-copy { padding: 0; }
+    .about-page h1 { max-width: 650px; font-size: clamp(36px, 6vw, 50px); }
+    .about-page .about-lead { max-width: 600px; }
+    .about-page .about-hero-photo { height: 420px; }
+    .about-page .about-hero-photo > img { object-position: center 45%; }
+    .about-page .about-countries { margin-top: 28px; }
+    .about-page .about-stats > div { padding-inline: 20px; }
+    .about-page .about-story-grid { grid-template-columns: 1fr; }
+    .about-page .about-story-aside { display: grid; grid-template-columns: 1.2fr 1fr; gap: 24px; align-items: center; padding-top: 0; }
+    .about-page .about-office-photo { height: 340px; }
+    .about-page .about-note { margin: 0; }
+    .about-page .about-section-head { display: block; }
+    .about-page .about-section-head > p, .about-page .about-section-head > a { margin-top: 20px; max-width: 500px; }
+    .about-page .about-timeline li { padding-right: 22px; }
+    .about-page .about-timeline h3 { font-size: 18px; }
+    .about-page .about-directions { grid-template-columns: repeat(3, 1fr); border: 0; gap: 12px; }
+    .about-page .about-directions > div, .about-page .about-directions > div:first-child { border: 1px solid var(--site-edge); border-radius: 6px; }
+    .about-page .about-gallery figure { height: 320px; }
+    .about-page .about-join { align-items: start; flex-direction: column; }
+}
+@media (max-width: 575px) {
+    .about-page .about-breadcrumb { padding-block: 20px 28px; }
+    .about-page .about-hero { padding-bottom: 44px; }
+    .about-page .about-hero-grid { gap: 30px; }
+    .about-page h1 { font-size: clamp(30px, 8vw, 38px); }
+    .about-page .about-lead { font-size: 16px; }
+    .about-page .about-hero-photo { height: 370px; margin-right: 10px; }
+    .about-page .about-hero-photo::before { inset: 12px -10px -10px 12px; }
+    .about-page .about-founded { left: 16px; right: 16px; bottom: 16px; padding: 16px; }
+    .about-page .about-founded time { font-size: 18px; }
+    .about-page .about-stats { grid-template-columns: 1fr 1fr; gap: 28px 0; padding-block: 30px; }
+    .about-page .about-stats > div { padding-inline: 18px; }
+    .about-page .about-stats > div:nth-child(odd) { padding-left: 0; border-left: 0; }
+    .about-page .about-stats dd { font-size: 12px; }
+    .about-page .about-story-aside { display: block; }
+    .about-page .about-note { margin-top: 22px; }
+    .about-page .about-section-head { margin-bottom: 32px; }
+    .about-page .about-timeline { grid-template-columns: 1fr; }
+    .about-page .about-timeline li { padding: 0 0 36px 68px; }
+    .about-page .about-timeline li:last-child { padding-bottom: 0; }
+    .about-page .about-timeline li::before { top: 0; bottom: 0; left: 24px; width: 1px; height: auto; }
+    .about-page .about-timeline li:last-child::before { display: none; }
+    .about-page .about-timeline-step { position: absolute; top: 0; left: 0; }
+    .about-page .about-timeline .about-timeline-date { padding-top: 4px; }
+    .about-page .about-timeline h3 { font-size: 21px; }
+    .about-page .about-directions { grid-template-columns: 1fr 1fr; margin-top: 28px; }
+    .about-page .about-directions > div { padding: 24px 18px; }
+    .about-page .about-directions > div:last-child { grid-column: 1 / -1; display: flex; align-items: center; gap: 18px; }
+    .about-page .about-directions > div:last-child i { margin: 0; }
+    .about-page .about-gallery { grid-template-columns: 1fr; gap: 18px; }
+    .about-page .about-gallery figure { height: 300px; }
+    .about-page .about-gallery figcaption { left: 20px; font-size: 20px; }
+    .about-page .about-join { padding: 28px 24px; }
+}

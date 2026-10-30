@@ -1,6 +1,6 @@
 # Manrope
 
-Variable WOFF2, начертания 400–800. Локальные подмножества: latin, latin-ext, cyrillic и cyrillic-ext; включают турецкие и кыргызские буквы.
+Variable WOFF2, начертания 400–800. Локальные подмножества: latin, latin-ext, cyrillic и cyrillic-ext. В этих файлах отсутствуют кыргызские буквы Ңң; для текста сайта используется Noto Sans из соседнего каталога `noto-sans`.
 
 Источник: https://fonts.google.com/specimen/Manrope, Google Fonts CSS API, загружено 28 октября 2026 года.
 

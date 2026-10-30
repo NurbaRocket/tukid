@@ -63,12 +63,12 @@
 									<div class="header-nav-features header-nav-features-no-border header-nav-features-lg-show-border order-1 order-lg-2">
 										{% include 'core/includes/language_switcher.html' %}
 										<div class="header-nav-feature header-nav-features-search d-inline-flex">
-											<a href="#" class="header-nav-features-toggle text-decoration-none" data-focus="headerSearch" aria-label="{% translate "Поиск по компаниям" %}"><i class="fas fa-search header-nav-top-icon"></i></a>
+											<a href="{% url 'core:search' %}" class="header-nav-features-toggle text-decoration-none" data-focus="headerSearch" aria-label="{% translate "Поиск по сайту" %}" aria-controls="headerTopSearchDropdown" aria-expanded="false"><i class="fas fa-search header-nav-top-icon" aria-hidden="true"></i></a>
 											<div class="header-nav-features-dropdown" id="headerTopSearchDropdown">
-												<form role="search" action="{% url 'core:members' %}" method="get">
+												<form role="search" action="{% url 'core:search' %}" method="get">
 													<div class="simple-search input-group">
-														<input class="form-control text-1" id="headerSearch" name="q" type="search" value="" placeholder="{% translate "Поиск по компаниям..." %}">
-														<button class="btn" type="submit" aria-label="{% translate "Поиск по компаниям" %}">
+														<input class="form-control text-1" id="headerSearch" name="q" type="search" value="{{ query|default:'' }}" maxlength="200" aria-label="{% translate 'Поиск по сайту' %}" placeholder="{% translate 'Поиск по сайту...' %}">
+														<button class="btn" type="submit" aria-label="{% translate "Найти" %}">
 															<i class="fas fa-search header-nav-top-icon"></i>
 														</button>
 													</div>
