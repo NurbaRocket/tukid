@@ -17,7 +17,7 @@ from django.utils.translation import gettext as _
 from .models import ApplicationRequestLimit
 
 logger = logging.getLogger(__name__)
-APPLICATION_ROUTES = {'core:membership', 'core:career'}
+APPLICATION_ROUTES = {'core:membership', 'core:career', 'core:contacts'}
 MAX_UPLOAD_BYTES = 5 * 1024 * 1024
 
 
@@ -86,14 +86,17 @@ class ApplicationSecurityMiddleware:
 
     def __call__(self, request):
         try:
-            route = resolve(request.path_info).view_name
+            match = resolve(request.path_info)
+            route = match.view_name
+            if route == 'core:page' and match.kwargs.get('slug') == 'contacts':
+                route = 'core:contacts'
         except Resolver404:
             route = None
         if route not in APPLICATION_ROUTES or request.method not in {'GET', 'POST'}:
             return self.get_response(request)
 
         if request.method == 'POST':
-            maximum = (settings.MEMBERSHIP_MAX_BODY_SIZE if route == 'core:membership'
+            maximum = (settings.MEMBERSHIP_MAX_BODY_SIZE if route in {'core:membership', 'core:contacts'}
                        else settings.APPLICATION_MAX_BODY_SIZE)
             try:
                 length = int(request.META.get('CONTENT_LENGTH') or 0)

@@ -45,6 +45,7 @@ UNFOLD = {
                 item('Институциональное сотрудничество', 'handshake', 'institutionalcooperation'),
                 item('Члены объединения', 'domain', 'member'),
                 item('Заявки на членство', 'assignment', 'membershipapplication'),
+                item('Сообщения с сайта', 'mail', 'contactmessage'),
                 item('Совет правления', 'groups', 'boardmember'),
             ]},
             {'title': 'Карьера', 'separator': True, 'items': [

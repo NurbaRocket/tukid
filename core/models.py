@@ -1,5 +1,7 @@
 import re
+from decimal import Decimal
 from pathlib import Path
+from urllib.parse import quote, urlencode, urlsplit
 from uuid import uuid4
 
 from django.conf import settings
@@ -241,6 +243,14 @@ class SiteSettings(TranslatedContent):
     instagram_url = models.URLField('Instagram', blank=True, default='https://www.instagram.com/tukid_kg/')
     telegram_url = models.URLField('Telegram', blank=True)
     maps_url = models.URLField('Ссылка на карту', blank=True)
+    dgis_api_key = models.CharField('API-ключ карты 2ГИС', max_length=200, blank=True,
+        help_text='Ключ RasterJS API из Менеджера Платформы 2ГИС. Используется в браузере для карты с отметкой офиса.')
+    map_latitude = models.DecimalField('Широта на карте 2ГИС', max_digits=9, decimal_places=6,
+        default=Decimal('42.875314'), validators=[MinValueValidator(-90), MaxValueValidator(90)])
+    map_longitude = models.DecimalField('Долгота на карте 2ГИС', max_digits=9, decimal_places=6,
+        default=Decimal('74.584443'), validators=[MinValueValidator(-180), MaxValueValidator(180)])
+    map_zoom = models.PositiveSmallIntegerField('Масштаб карты 2ГИС', default=16,
+        validators=[MinValueValidator(1), MaxValueValidator(19)])
     header_logo = models.FileField('Логотип шапки и админки', upload_to=site_image_path, blank=True, validators=[FileExtensionValidator(['svg', 'png', 'jpg', 'jpeg', 'webp']), validate_logo], help_text='Если не загружен, используется текущий логотип из шапки. До 2 МБ.')
     footer_logo = models.FileField('Логотип футера', upload_to=site_image_path, blank=True, validators=[FileExtensionValidator(['svg', 'png', 'jpg', 'jpeg', 'webp']), validate_logo])
     favicon = models.FileField('Иконка сайта', upload_to=site_image_path, blank=True, validators=[FileExtensionValidator(['ico', 'svg', 'png']), validate_favicon])
@@ -272,6 +282,21 @@ class SiteSettings(TranslatedContent):
     @property
     def phone_link(self):
         return re.sub(r'[^\d+]', '', self.phone)
+
+    @property
+    def dgis_loader_url(self):
+        if not self.dgis_api_key.strip():
+            return ''
+        return 'https://maps.api.2gis.ru/2.0/loader.js?' + urlencode({
+            'pkg': 'full', 'key': self.dgis_api_key.strip(),
+        })
+
+    @property
+    def dgis_url(self):
+        parsed = urlsplit(self.maps_url)
+        if parsed.scheme == 'https' and parsed.hostname in {'2gis.kg', '2gis.ru', '2gis.com'}:
+            return self.maps_url
+        return 'https://2gis.kg/bishkek/search/' + quote(self.address, safe='')
 
     @property
     def whatsapp_url(self):
@@ -685,6 +710,33 @@ class CareerApplication(models.Model):
     @property
     def reference(self):
         return self.pk.hex.upper()
+
+
+class ContactMessage(models.Model):
+    class Status(models.TextChoices):
+        NEW = 'new', 'Новое'
+        IN_PROGRESS = 'in_progress', 'В работе'
+        CLOSED = 'closed', 'Обработано'
+
+    id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
+    full_name = models.CharField('Ваше имя', max_length=150)
+    email = models.EmailField('Электронная почта')
+    phone = models.CharField('Телефон', max_length=60, blank=True)
+    subject = models.CharField('Тема сообщения', max_length=200)
+    message = models.TextField('Сообщение', max_length=5000)
+    language = models.CharField('Язык обращения', max_length=2, choices=settings.LANGUAGES, default='ru')
+    status = models.CharField('Статус', max_length=20, choices=Status.choices, default=Status.NEW, db_index=True)
+    notes = models.TextField('Внутренние заметки', max_length=10000, blank=True)
+    created_at = models.DateTimeField('Получено', auto_now_add=True)
+    updated_at = models.DateTimeField('Обновлено', auto_now=True)
+
+    class Meta:
+        verbose_name = 'сообщение с сайта'
+        verbose_name_plural = 'Сообщения с сайта'
+        ordering = ['-created_at', '-pk']
+
+    def __str__(self):
+        return f'{self.full_name} · {self.subject}'
 
 
 class ApplicationRequestLimit(models.Model):

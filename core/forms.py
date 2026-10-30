@@ -7,7 +7,7 @@ from django import forms
 from django.core import signing
 
 from .membership_constants import APPLICANT_FIELDS
-from .models import CareerApplication, MembershipApplication, Vacancy
+from .models import CareerApplication, ContactMessage, MembershipApplication, Vacancy
 from .career_constants import CAREER_APPLICANT_FIELDS, CAREER_CONSENT
 from .career_files import validate_resume
 
@@ -90,6 +90,67 @@ class MembershipApplicationForm(forms.ModelForm):
             digits = re.sub(r'\D', '', phone)
             if phone and (not 7 <= len(digits) <= 15 or not re.fullmatch(r'[+\d()\s.\-]+', phone)):
                 self.add_error(name, _('Введите корректный номер телефона с кодом страны.'))
+        return cleaned
+
+
+CONTACT_SUBMISSION_SALT = 'core.contact.submission.v1'
+
+
+def new_contact_submission_token():
+    return signing.dumps({'id': str(uuid4())}, salt=CONTACT_SUBMISSION_SALT)
+
+
+class ContactMessageForm(forms.ModelForm):
+    submission_token = forms.CharField(widget=forms.HiddenInput, max_length=300)
+    website = forms.CharField(required=False, widget=forms.HiddenInput)
+
+    class Meta:
+        model = ContactMessage
+        fields = ['full_name', 'email', 'phone', 'subject', 'message']
+        widgets = {
+            'full_name': forms.TextInput(attrs={'autocomplete': 'name'}),
+            'email': forms.EmailInput(attrs={'autocomplete': 'email'}),
+            'phone': forms.TextInput(attrs={'type': 'tel', 'autocomplete': 'tel'}),
+            'message': forms.Textarea(attrs={'rows': 5}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for name in self.Meta.fields:
+            field = self.fields[name]
+            field.label = _(str(field.label))
+            field.widget.attrs['class'] = 'form-control'
+        if self.is_bound:
+            for name in self.errors:
+                if name in self.fields:
+                    self.fields[name].widget.attrs.update({
+                        'class': 'form-control is-invalid', 'aria-invalid': 'true',
+                        'aria-describedby': f'id_{name}_errors',
+                    })
+
+    def clean_submission_token(self):
+        token = self.cleaned_data['submission_token']
+        try:
+            payload = signing.loads(token, salt=CONTACT_SUBMISSION_SALT, max_age=7200)
+            self.submission_id = UUID(payload['id'])
+        except (signing.BadSignature, KeyError, ValueError, TypeError):
+            raise forms.ValidationError(_('Время заполнения истекло. Обновите страницу и отправьте заявку ещё раз.'))
+        return token
+
+    def clean_website(self):
+        if self.cleaned_data.get('website'):
+            raise forms.ValidationError(_('Не удалось отправить форму.'))
+        return ''
+
+    def clean(self):
+        cleaned = super().clean()
+        for name in self.Meta.fields:
+            value = cleaned.get(name)
+            if isinstance(value, str) and re.search(r'[\x00-\x08\x0b\x0c\x0e-\x1f]', value):
+                self.add_error(name, _('Удалите непечатаемые символы.'))
+        phone = cleaned.get('phone', '')
+        if phone and (not 7 <= len(re.sub(r'\D', '', phone)) <= 15 or not re.fullmatch(r'[+\d()\s.\-]+', phone)):
+            self.add_error('phone', _('Введите корректный номер телефона с кодом страны.'))
         return cleaned
 
 

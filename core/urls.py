@@ -26,6 +26,6 @@ urlpatterns = [
     path('career/', views.career, name='career'),
     path('career/sent/', views.career_success, name='career_success'),
     path('career/vacancies/<slug:slug>/', views.vacancy_detail, name='vacancy_detail'),
-    path('contacts/', views.information_page, {'slug': 'contacts'}, name='contacts'),
+    path('contacts/', views.contacts, name='contacts'),
     path('pages/<slug:slug>/', views.information_page, name='page'),
 ]

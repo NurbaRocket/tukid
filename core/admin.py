@@ -21,7 +21,7 @@ from .localization import TranslationAdminMixin
 from .models import (
     ActivitySector, BoardMember, Event, GalleryPhoto, HomeDirection, HomeSection,
     InstitutionalCooperation, MeetingPhoto, Member, MembershipApplication, MenuItem,
-    News, NewsTag, OfficialMeeting, Page, SiteSettings, Vacancy, CareerApplication,
+    News, NewsTag, OfficialMeeting, Page, SiteSettings, Vacancy, CareerApplication, ContactMessage,
 )
 
 admin.site.site_title = 'TUKID · Управление сайтом'
@@ -85,6 +85,8 @@ class SiteSettingsAdmin(ContentAdmin):
         ('Организация', {'fields': ['name', 'organization_name', 'site_description']}),
         ('Логотипы', {'fields': ['branding_preview', 'header_logo', 'footer_logo', 'favicon'], 'classes': ['tab']}),
         ('Контакты', {'fields': ['email', 'phone', 'whatsapp', 'address', 'maps_url', 'show_contact_bar'], 'classes': ['tab']}),
+        ('Карта 2ГИС', {'fields': ['dgis_api_key', 'map_latitude', 'map_longitude', 'map_zoom'],
+                      'description': 'Карта с отметкой офиса без карточки организации. Для встраивания нужен ключ RasterJS API из Менеджера Платформы 2ГИС. При изменении адреса обновите координаты.', 'classes': ['tab']}),
         ('Социальные сети', {'fields': ['facebook_url', 'instagram_url', 'telegram_url'], 'classes': ['tab']}),
         ('Футер', {'fields': ['footer_text', 'copyright_text', 'updated_at'], 'classes': ['tab']}),
     ]
@@ -434,6 +436,24 @@ class CareerApplicationAdmin(ContentAdmin):
             obj.reviewed_at = timezone.now()
             obj.reviewed_by = request.user
         super().save_model(request, obj, form, change)
+
+
+@admin.register(ContactMessage)
+class ContactMessageAdmin(ModelAdmin):
+    list_display = ['subject', 'full_name', 'email', 'status', 'created_at']
+    list_filter = ['status', 'language', 'created_at']
+    search_fields = ['subject', 'full_name', 'email', 'phone', 'message']
+    date_hierarchy = 'created_at'
+    list_per_page = 25
+    readonly_fields = ['full_name', 'email', 'phone', 'subject', 'message', 'language', 'created_at', 'updated_at']
+    fieldsets = [
+        ('Обращение', {'fields': ['subject', 'message', 'created_at', 'language']}),
+        ('Контакты отправителя', {'fields': ['full_name', 'email', 'phone']}),
+        ('Обработка', {'fields': ['status', 'notes', 'updated_at']}),
+    ]
+
+    def has_add_permission(self, request):
+        return False
 
 
 admin.site.unregister(User)

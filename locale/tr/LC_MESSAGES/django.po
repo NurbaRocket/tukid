@@ -1079,3 +1079,65 @@ msgstr "Üyelerimizle tanışın ve yeni iş birliği fırsatlarını keşfedin.
 
 msgid "Присоединиться к TÜKİD"
 msgstr "TÜKİD'e katılın"
+
+msgid "Разработка сайта"
+msgstr "Web sitesi geliştirme"
+
+msgid "Всегда на связи"
+msgstr "Her zaman iletişimdeyiz"
+
+msgid "Давайте начнём с диалога"
+msgstr "Bir diyalogla başlayalım"
+
+msgid ""
+"Есть вопрос или предложение о сотрудничестве? Напишите нам или свяжитесь "
+"удобным для вас способом."
+msgstr ""
+"Bir sorunuz veya iş birliği teklifiniz mi var? Bize yazın ya da size uygun "
+"bir yolla iletişime geçin."
+
+msgid "Посмотреть на карте"
+msgstr "Haritada göster"
+
+msgid "Напишите нам"
+msgstr "Bize yazın"
+
+msgid "Оставьте сообщение, и мы ответим на вашу электронную почту."
+msgstr "Mesaj bırakın, e-posta adresinize yanıt verelim."
+
+msgid "Проверьте отмеченные поля и отправьте сообщение ещё раз."
+msgstr "İşaretli alanları kontrol edip mesajınızı tekrar gönderin."
+
+msgid "необязательно"
+msgstr "isteğe bağlı"
+
+msgid "Отправить сообщение"
+msgstr "Mesaj gönder"
+
+msgid "Как нас найти"
+msgstr "Bize nasıl ulaşabilirsiniz"
+
+msgid "Наш офис на карте"
+msgstr "Haritada ofisimiz"
+
+msgid "Открыть в 2ГИС"
+msgstr "2GIS'te aç"
+
+msgid "Расположение офиса на карте 2ГИС"
+msgstr "2GIS haritasında ofis konumu"
+
+msgid "Ваше имя"
+msgstr "Adınız"
+
+msgid "Тема сообщения"
+msgstr "Mesaj konusu"
+
+msgid "Сообщение"
+msgstr "Mesaj"
+
+msgid ""
+"Спасибо! Ваше сообщение отправлено. Мы свяжемся с вами по указанным "
+"контактам."
+msgstr ""
+"Teşekkürler! Mesajınız gönderildi. Belirttiğiniz iletişim bilgileri "
+"üzerinden size ulaşacağız."

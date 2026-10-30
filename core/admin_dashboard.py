@@ -4,7 +4,7 @@ from django.templatetags.static import static
 from django.urls import reverse
 from django.utils import timezone
 
-from .models import CareerApplication, Event, Member, MembershipApplication, News, Page, Vacancy
+from .models import CareerApplication, ContactMessage, Event, Member, MembershipApplication, News, Page, Vacancy
 from .site_cache import get_site_settings
 
 
@@ -53,6 +53,13 @@ def dashboard(request, context):
             tasks.append({'title': f'{title}: без изображения', 'count': missing, 'url': url + f'?{image_field}__exact='})
     if request.user.has_perm('core.change_sitesettings'):
         quick_links.insert(0, {'title': 'Контакты и логотипы', 'icon': 'tune', 'url': reverse('admin:core_sitesettings_changelist')})
+    if request.user.has_perm('core.view_contactmessage') or request.user.has_perm('core.change_contactmessage'):
+        messages_url = reverse('admin:core_contactmessage_changelist')
+        quick_links.append({'title': 'Сообщения с сайта', 'icon': 'mail', 'url': messages_url})
+        count = ContactMessage.objects.filter(status=ContactMessage.Status.NEW).count()
+        if count:
+            tasks.insert(0, {'title': 'Новые сообщения с сайта', 'count': count,
+                             'url': messages_url + '?status__exact=new'})
     if request.user.has_perm('core.view_vacancy') or request.user.has_perm('core.change_vacancy'):
         vacancies_url = reverse('admin:core_vacancy_changelist')
         cards.append({'title': 'Вакансии', 'icon': 'work', 'total': Vacancy.objects.count(),

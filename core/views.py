@@ -1,6 +1,7 @@
 import logging
 
 from django.core.paginator import Paginator
+from django.contrib import messages
 from django.db.models import Prefetch, Q
 from django.core.exceptions import ValidationError
 from django.shortcuts import get_object_or_404, redirect, render
@@ -11,17 +12,17 @@ from django.views.decorators.cache import never_cache
 from django.views.decorators.debug import sensitive_post_parameters
 from django.views.decorators.http import require_GET, require_http_methods
 
-from .forms import MembershipApplicationForm, new_submission_token
+from .forms import ContactMessageForm, MembershipApplicationForm, new_contact_submission_token, new_submission_token
 from .forms import CareerApplicationForm, new_career_submission_token
 from .career_service import submit_career_application
 from .membership_constants import MEMBERSHIP_DECLARATION
 from .membership_pdf import MembershipPDFError
 from .membership_service import submit_membership_application
-from .site_cache import get_site_navigation
+from .site_cache import get_site_navigation, get_site_settings
 from .search import search_site
 
 from .models import (
-    ActivitySector, BoardMember, Event, GalleryPhoto, HomeDirection, HomeSection,
+    ActivitySector, BoardMember, ContactMessage, Event, GalleryPhoto, HomeDirection, HomeSection,
     InstitutionalCooperation, Member, News, NewsTag, OfficialMeeting, Page, Vacancy,
 )
 
@@ -97,6 +98,8 @@ def home(request):
 
 
 def information_page(request, slug):
+    if slug == 'contacts':
+        return contacts(request)
     if slug == 'career':
         return redirect('core:career')
     page = get_object_or_404(Page, slug=slug, is_published=True)
@@ -106,6 +109,35 @@ def information_page(request, slug):
         'page': page, 'page_title': page.localized('title'), 'nav_section': section,
         'meta_description': page.localized('meta_description'),
         'board_members': BoardMember.objects.filter(is_published=True).select_related('company') if slug == 'board' else [],
+    })
+
+
+@sensitive_post_parameters()
+@never_cache
+@require_http_methods(['GET', 'POST'])
+def contacts(request):
+    page = get_object_or_404(Page, slug='contacts', is_published=True)
+    form = ContactMessageForm(
+        request.POST if request.method == 'POST' else None,
+        initial={'submission_token': new_contact_submission_token()},
+    )
+    if request.method == 'POST' and form.is_valid():
+        # A signed submission UUID keeps double clicks and retried POSTs idempotent.
+        ContactMessage.objects.get_or_create(pk=form.submission_id, defaults={
+            **{name: form.cleaned_data[name] for name in form.Meta.fields},
+            'language': request.LANGUAGE_CODE.split('-')[0],
+        })
+        messages.success(request, _('Спасибо! Ваше сообщение отправлено. Мы свяжемся с вами по указанным контактам.'))
+        return redirect('core:contacts')
+    settings = get_site_settings(request)
+    return render(request, 'core/pages/contacts.html', {
+        'page': page, 'page_title': page.localized('title'), 'nav_section': 'contacts',
+        'meta_description': page.localized('meta_description'), 'form': form,
+        'dgis_loader_url': settings.dgis_loader_url, 'dgis_url': settings.dgis_url,
+        'dgis_map_config': {'latitude': float(settings.map_latitude),
+                            'longitude': float(settings.map_longitude), 'zoom': min(settings.map_zoom, 18),
+                            'key': settings.dgis_api_key.strip(), 'name': settings.localized('name'),
+                            'address': settings.localized('address')},
     })
 
 

@@ -209,6 +209,7 @@ class AdminWorkspaceTests(TestCase):
             'name': 'TUKID', 'organization_name': 'Общественное объединение TUKID',
             'site_description': 'Новое описание сайта', 'email': 'cms@example.com',
             'phone': '+996555123456', 'whatsapp': '+996555123456', 'address': 'Адрес из админки',
+            'map_latitude': '42.875314', 'map_longitude': '74.584443', 'map_zoom': '16',
             'header_logo': picture('new-logo.svg'), 'copyright_text': 'Все права защищены.',
             'show_contact_bar': 'on', '_save': 'Сохранить',
         })

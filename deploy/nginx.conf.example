@@ -4,7 +4,7 @@
 # Enable its trusted-proxy setting for this loopback nginx proxy; never expose
 # that application port publicly. nginx overwrites the forwarded headers below.
 
-# Limit POSTs across both forms per client, including translated URLs.
+# Limit POSTs across public forms per client, including translated URLs.
 # An empty key exempts GET/HEAD requests from the submission rate limit.
 map $request_method $form_post_client {
     default "";
@@ -95,7 +95,7 @@ server {
         proxy_pass http://127.0.0.1:8000;
     }
 
-    location ~ ^/(?:ky/|tr/)?membership/$ {
+    location ~ ^/(?:ky/|tr/)?(?:membership|contacts|pages/contacts)/$ {
         client_max_body_size 64k;
         limit_req zone=form_posts burst=3 nodelay;
         limit_conn form_connections 3;

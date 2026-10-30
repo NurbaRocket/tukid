@@ -1,15 +1,69 @@
-{% extends 'core/pages/information.html' %}
-{% load i18n %}
+{% extends 'core/page_layout.html' %}
+{% load i18n static content %}
 
-{% block extra_information %}
-<div class="row g-4 mt-3">
-    <div class="col-lg-8 contact-panel">
-        <ul class="list list-icons list-icons-lg text-4 line-height-7">
-            <li><i class="fas fa-location-dot text-color-primary" aria-hidden="true"></i>{{ site_settings.i18n.address }}{% if site_settings.maps_url %} <a href="{{ site_settings.maps_url }}" target="_blank" rel="noopener noreferrer">{% translate "На карте" %}</a>{% endif %}</li>
-            <li><i class="fas fa-phone text-color-primary" aria-hidden="true"></i><a href="tel:{{ site_settings.phone_link }}">{{ site_settings.phone }}</a></li>
-            <li><i class="far fa-envelope text-color-primary" aria-hidden="true"></i><a href="mailto:{{ site_settings.email }}">{{ site_settings.email }}</a></li>
-            {% if site_settings.whatsapp_url %}<li><i class="fab fa-whatsapp text-color-primary" aria-hidden="true"></i><a href="{{ site_settings.whatsapp_url }}" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>{% endif %}
-        </ul>
+{% block page_styles %}<link rel="stylesheet" href="{% static 'core/css/contacts.css' %}">{% endblock %}
+
+{% block page_content %}
+<div class="contacts-page">
+    {% for notice in messages %}
+    <div class="alert alert-success mb-4" role="status"><i class="fas fa-circle-check me-2" aria-hidden="true"></i>{{ notice }}</div>
+    {% endfor %}
+    <div class="row g-4 g-xl-5">
+        <div class="col-lg-5">
+            <p class="section-eyebrow">{% translate "Всегда на связи" %}</p>
+            <h2 class="section-heading text-transform-none mb-3">{% translate "Давайте начнём с диалога" %}</h2>
+            <p class="contacts-intro">{% translate "Есть вопрос или предложение о сотрудничестве? Напишите нам или свяжитесь удобным для вас способом." %}</p>
+            {% if page.image %}<img class="img-fluid article-cover mb-4" src="{{ page.image.url }}" alt="{{ page.i18n.image_alt|default:page.i18n.title }}">{% endif %}
+            {% if page.i18n.body %}<div class="page-prose mb-4">{{ page.i18n.body|richtext }}</div>{% endif %}
+            <dl class="contacts-details">
+                <div><dt><i class="fas fa-location-dot" aria-hidden="true"></i>{% translate "Адрес" %}</dt><dd>{{ site_settings.i18n.address }}<br><a href="#office-map">{% translate "Посмотреть на карте" %} <i class="fas fa-arrow-down ms-1" aria-hidden="true"></i></a></dd></div>
+                <div><dt><i class="fas fa-phone" aria-hidden="true"></i>{% translate "Телефон" %}</dt><dd><a href="tel:{{ site_settings.phone_link }}">{{ site_settings.phone }}</a></dd></div>
+                <div><dt><i class="far fa-envelope" aria-hidden="true"></i>{% translate "Электронная почта" %}</dt><dd><a href="mailto:{{ site_settings.email }}">{{ site_settings.email }}</a></dd></div>
+            </dl>
+            <div class="d-flex flex-wrap gap-2 mt-4">
+                {% if site_settings.whatsapp_url %}<a class="btn btn-light btn-sm" href="{{ site_settings.whatsapp_url }}" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp me-2" aria-hidden="true"></i>WhatsApp</a>{% endif %}
+                {% if site_settings.telegram_url %}<a class="btn btn-light btn-sm" href="{{ site_settings.telegram_url }}" target="_blank" rel="noopener noreferrer"><i class="fab fa-telegram me-2" aria-hidden="true"></i>Telegram</a>{% endif %}
+            </div>
+        </div>
+        <div class="col-lg-7">
+            <section class="contact-panel" aria-labelledby="contact-form-title">
+                <h2 id="contact-form-title" class="text-6 font-weight-bold text-transform-none mb-2">{% translate "Напишите нам" %}</h2>
+                <p class="mb-4">{% translate "Оставьте сообщение, и мы ответим на вашу электронную почту." %}</p>
+                <form class="contact-message-form" action="{% url 'core:contacts' %}#contact-form-title" method="post">
+                    {% csrf_token %}
+                    {% for hidden in form.hidden_fields %}{{ hidden }}{% endfor %}
+                    {% if form.errors %}<div class="alert alert-danger" role="alert">{% translate "Проверьте отмеченные поля и отправьте сообщение ещё раз." %}{% for hidden in form.hidden_fields %}{% for error in hidden.errors %}<div>{{ error }}</div>{% endfor %}{% endfor %}{{ form.non_field_errors }}</div>{% endif %}
+                    <div class="row g-3">
+                        {% for field in form.visible_fields %}
+                        <div class="{% if field.name == 'full_name' or field.name == 'email' %}col-md-6{% else %}col-12{% endif %}">
+                            <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}{% if field.field.required %} <span class="text-color-primary" aria-hidden="true">*</span>{% else %} <span class="text-muted text-2">({% translate "необязательно" %})</span>{% endif %}</label>
+                            {{ field }}
+                            {% if field.errors %}<div id="{{ field.id_for_label }}_errors" class="invalid-feedback d-block">{% for error in field.errors %}<div>{{ error }}</div>{% endfor %}</div>{% endif %}
+                        </div>
+                        {% endfor %}
+                        <div class="col-12"><button class="btn btn-primary mt-1" type="submit">{% translate "Отправить сообщение" %} <i class="fas fa-arrow-right ms-2" aria-hidden="true"></i></button></div>
+                    </div>
+                </form>
+            </section>
+        </div>
     </div>
+    <section id="office-map" class="contacts-map-section" aria-labelledby="office-map-title">
+        <div class="d-flex flex-wrap align-items-end justify-content-between gap-3 mb-4">
+            <div><p class="section-eyebrow">{% translate "Как нас найти" %}</p><h2 id="office-map-title" class="section-heading text-transform-none mb-2">{% translate "Наш офис на карте" %}</h2><p class="mb-0">{{ site_settings.i18n.address }}</p></div>
+            <a class="btn btn-light" href="{{ dgis_url }}" target="_blank" rel="noopener noreferrer">{% translate "Открыть в 2ГИС" %} <i class="fas fa-arrow-up-right-from-square ms-2" aria-hidden="true"></i></a>
+        </div>
+        {% if dgis_loader_url %}
+        <div id="contact-office-map" class="contacts-map contacts-map-canvas" role="region" aria-label="{% translate 'Расположение офиса на карте 2ГИС' %}" hidden></div>
+        {{ dgis_map_config|json_script:'contact-map-config' }}
+        {% endif %}
+        <div id="contact-map-fallback" class="contacts-map contacts-map-placeholder"><i class="fas fa-map-location-dot" aria-hidden="true"></i><p class="mb-3">{{ site_settings.i18n.address }}</p><a class="btn btn-primary" href="{{ dgis_url }}" target="_blank" rel="noopener noreferrer">{% translate "Посмотреть на карте" %}</a></div>
+    </section>
 </div>
+{% endblock %}
+
+{% block page_scripts %}
+{% if dgis_loader_url %}
+<script src="{{ dgis_loader_url }}" defer></script>
+<script src="{% static 'core/js/contact-map.js' %}" defer></script>
+{% endif %}
 {% endblock %}
